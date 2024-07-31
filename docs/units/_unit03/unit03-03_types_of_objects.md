@@ -12,7 +12,7 @@ header:
 
 You may like to store information of various data types like character, integer, floating point, Boolean etc. Based on the data type of a object, the operating system allocates memory and decides what can be stored in the reserved memory.
 
-The objects are assigned with R-Objects and the data type of the R-object becomes the data type of the object. There are many types of R-objects. The frequently used ones are:
+The objects are assigned with Python objects, and the data type of the Python object becomes the data type of the object. There are many types of Python objects. The ones we use the most are:
 
 *	Lists
 *	Data Frames
@@ -59,6 +59,7 @@ x
 If you want to store more than one value in an object, you need an array. It is a basic data structure and contains elements of the same type. The data types can be logical, integer, float, and string.
 
 When you want to create an array with more than one element, you need to use the `numpy.array()` function to combine the elements into an array.
+
 ```python
 import numpy as np
 
@@ -94,60 +95,22 @@ print(apple)
 # Output:
 # ['red' 'green' 'yellow' 'brown']
 ```
+### Vectorization
+In Python, most (but not all!) functions provided by the numpy library are automatically applied to all elements of an array.
 
------
-
-# Lists
-If you want to store more than one value to an object you need a list. It is a basic data structure and contains elements of the same or different data type.
-
-When you want to create a list with more than one element, you use square brackets `[]` to combine the elements into a list.
-
+When you perform an operation on two arrays of the same length, NumPy will automatically apply the operation element-wise, meaning it performs the operation between the corresponding elements of the arrays.
 
 ```python
-# Creating a list with multiple elements
-apple = ["red", "green", "yellow"]
-print(apple)  
-# Output: ['red', 'green', 'yellow']
-```
+import numpy as np
 
-You can check the type of the list using the type() function.
+# Creating two arrays of the same length
+x = np.array([1, 2, 3])
+y = np.array([4, 5, 6])
 
-```python
-# Checking the type of the list
-print(type(apple))  
-# Output: <class 'list'>
-```
-
-Another important property of a list is its length. This is the number of elements in the list and can be checked with the len() function. In this case, the length is 3, for "red", "green", and "yellow".
-
-```python
-print(len(apple))  
-# Output: 3
-```
-
-A list can contain values of different data types, unlike R vectors.
-
-You can add elements using the append() method or by concatenating lists.
-
-```python
-# Adding an element
-apple.append(10)
-print(apple)  
-# Output: ['red', 'green', 'yellow', 10]
-
-# Adding multiple elements
-apple += ["blue", "5"]
-print(apple)  
-# Output: ['red', 'green', 'yellow', 'brown', 'blue', '10, 'blue', 5]
-```
-
-If you need to repeat an element of a list several times, you can use the multiplication operator `*`:
-
-```python
-# Repeat elements
-applebucket = apple * 3
-print(applebucket)
-# Output: ['red', 'green', 'yellow', 'brown', 'blue', '10, 'blue', 5, 'red', 'green', 'yellow', 'brown', 'blue', '10, 'blue', 5, 'red', 'green', 'yellow', 'brown', 'blue', '10, 'blue', 5]
+# Performing element-wise addition
+result = x + y
+print(result)
+# Output: [5 7 9]
 ```
 -----------
 
@@ -222,41 +185,93 @@ print(patients)
 ```
 
 -----
-
 # Matrix
-A matrix is a two-dimensional rectangular data set. You can create and manipulate matrices using the `numpy` library. 
+A matrix is a two-dimensional rectangular data set. You can create and manipulate matrices using the `numpy` library.
 
-```r
-# Create a matrix.
-M = matrix(c('a','a','b','c','b','a'), nrow = 2, ncol = 3)
+### Create a Matrix
+You can create a matrix using the `numpy.array()` function. Here is an example:
+```python
+import numpy as np
+
+# Create a matrix
+M = np.array([['a', 'a', 'b'], ['c', 'b', 'a'], ['a', 'b', 'c']])
 print(M)
-    [,1] [,2] [,3]
-[1,] "a"  "b"  "b" 
-[2,] "a"  "c"  "a" 
-
+# Output:
+# [['a' 'a' 'b']
+#  ['c' 'b' 'a']
+#  ['a' 'b' 'c']]
 ```
-When we execute the above code, it produces the following result − Notice that by default, the first column is first filled from top to button, then the second column and so on.
 
-
-it follows this pattern:
-
-{% include figure image_path="/assets/images/unit_images/u03/matrix_direction.png" %}
-
-If you want to change this, set byrow=FALSE
-
-```r
-
-M = matrix(c('a','a','b','c','b','a'), nrow = 2, ncol = 3, byrow = TRUE)
-M
-     [,1] [,2] [,3]
-[1,] "a"  "a"  "b"
-[2,] "c"  "b"  "a"
+You can also use the `reshape` method. The matrix will be created rowwise by default:
+```python
+# Create a matrix with row-wise filling
+M = np.array(['a', 'a', 'b', 'c', 'b', 'a','a','b','c']).reshape(3, 3)
+print(M)
+# Output:
+# [['a' 'a' 'b']
+#  ['c' 'b' 'a']
+#  ['a' 'b' 'c']]
 ```
-Columns and rows can be attached using __cbind()__ and __rbind()__, respectively.
-With __nrow()__ and __ncol()__, you can return the number of rows and columns, respectively.
-As in dataframes, you can add names to your columns and row. In contrast to dataframes, however, you cannot address a column with by __”$”__.
-
 ---
+
+# Lists
+A list is an object which can contain many different types of elements inside it, such as arrays, a matrix, functions, and even another list inside it. The list is typically created using square brackets `[]`. Unlike arrays, list elements do not need to have equal length and the same data types.
+
+```python
+# Creating a list with multiple elements
+# Create a list
+list1 = [[2, 5, 3], 21.3, sum]
+
+# Print the list
+print(list1)
+
+# Output: list1 = [[2, 5, 3], 21.3, sum]
+```
+
+You can access list elements using square brackets `[]`. Using single square brackets returns the element while preserving its structure as a list. To access the value inside, you again use `[]` to access the values
+
+```python
+# Accessing elements
+print(list1[0])  # Output: [2, 5, 3]
+print(list1[1])  # Output: 21.3
+print(list1[2])  # Output: <built-in function sum>
+
+# Accessing elements within a sublist
+print(list1[0][1])  # Output: 5
+```
+
+# Multidimensional Arrays
+Multidimensional arrays are arrays that have more than two dimensions. These can be created and manipulated using the `numpy` library. They are useful for handling complex data structures like matrices, tensors, and higher-dimensional data.
+
+While lists in Python are flexible and can hold different types of elements, including other lists to create nested structures, they are not optimized for numerical operations and become cumbersome and inefficient for large datasets. Similarly, matrices are inherently two-dimensional and cannot naturally extend to higher dimensions needed for complex data structures. Multidimensional arrays are basically matrices stacked behind each other like this:
+```python
+import numpy as np
+
+# Create a 3D array (2 layers, each with 3 rows and 4 columns)
+array_3d = np.array([
+    [
+        [1, 2, 3, 4],
+        [5, 6, 7, 8],
+        [9, 10, 11, 12]
+    ],
+    [
+        [13, 14, 15, 16],
+        [17, 18, 19, 20],
+        [21, 22, 23, 24]
+    ]
+])
+
+print(array_3d)
+# Output:
+# [[[ 1  2  3  4]
+#   [ 5  6  7  8]
+#   [ 9 10 11 12]]
+#
+#  [[13 14 15 16]
+#   [17 18 19 20]
+#   [21 22 23 24]]]
+```
+```
 <!--
 ## Further reading
 {% include figure image_path="/assets/images/unit_images/u03/grid.png" caption="A Matrix by [?](?)" %}
