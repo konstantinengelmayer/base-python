@@ -167,7 +167,7 @@ print(patients.loc[0])  # Accessing the row with label 0
 ```
 
 New columns can be directly assigned:
-```r
+```python
 # Adding a new column using direct assignment
 patients['Last_Name'] = ['Müller','Schmidt','Smith','Brown','Rodriguez']
 print(patients)
