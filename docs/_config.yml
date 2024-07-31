@@ -22,8 +22,8 @@
 # baseurl: "/data/UNIMR/lm_data/lm_xxx"
 
 # Serve on GitHub
-url: https://geomoer.github.io/
-baseurl: "/moer-base-python"
+url: https://konstantinengelmayer.github.io
+baseurl: "/base-python"
 
 
 ##### Title ###################################################################
