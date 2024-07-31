@@ -55,6 +55,47 @@ x
 ```
 
 -----
+# Arrays
+If you want to store more than one value in an object, you need an array. It is a basic data structure and contains elements of the same type. The data types can be logical, integer, float, and string.
+
+When you want to create an array with more than one element, you need to use the `numpy.array()` function to combine the elements into an array.
+```python
+import numpy as np
+
+apple = np.array(["red", "green", "yellow"])
+print(apple)
+# Output:
+# ['red' 'green' 'yellow']
+```
+
+An array’s type can be checked with the `dtype` attribute. `apple` is a word, not a number, therefore it is a string.
+```python
+# Ask for the data type of the array
+print(apple.dtype)
+# Output:
+# dtype('<U6')  # Unicode string of max length 6
+```
+
+Another important property of an array is its length. This is the number of elements in the array and can be checked with the `len()` function. In this case, the length is 3. Three values for "red", "green", and "yellow".
+```python
+# Ask for the length of the array
+print(len(apple))
+# Output:
+# 3
+```
+
+An array can only contain values of the same data type.
+
+You can add elements by creating a new array that includes the new elements.
+```python
+# Add an element
+apple = np.append(apple, "brown")
+print(apple)
+# Output:
+# ['red' 'green' 'yellow' 'brown']
+```
+
+-----
 
 # Lists
 If you want to store more than one value to an object you need a list. It is a basic data structure and contains elements of the same or different data type.
@@ -183,8 +224,7 @@ print(patients)
 -----
 
 # Matrix
-A matrix is a two-dimensional rectangular data set. It can be created using a vector input to the `matrix()` function.
-`nrow` stands for 2 rows and `ncol` for 3 columns. All data within a matrix must be of the same data type.
+A matrix is a two-dimensional rectangular data set. You can create and manipulate matrices using the `numpy` library. 
 
 ```r
 # Create a matrix.
@@ -217,143 +257,6 @@ With __nrow()__ and __ncol()__, you can return the number of rows and columns, r
 As in dataframes, you can add names to your columns and row. In contrast to dataframes, however, you cannot address a column with by __”$”__.
 
 ---
-
-# Array
-Arrays are the objects which can store data in more than two dimensions. For example − If we create an array of dimension (2, 3, 4) then it creates 4 rectangular matrices each with 2 rows and 3 columns. Arrays can store only one data type.
-
-An array is created using the array() function. It takes vectors as input and uses the values in the dim parameter to create an array.
-
-```r
-# create an array with numbers from 1 to 24 with the dimensions of 3 rows, 4 columns and 2 "tables".
-my.array <- array(1:24, dim=c(3,4,2))
-
-my.array
-, , 1
-   [,1] [,2] [,3] [,4]
-[1,]  1  4  7  10
-[2,]  2  5  8  11
-[3,]  3  6  9  12
-, , 2
-   [,1] [,2] [,3] [,4]
-[1,]  13  16  19  22
-[2,]  14  17  20  23
-[3,]  15  18  21  24
-```
-
-This array has three dimensions. Notice that, although the rows are given as the first dimension, the tables are filled column-wise. So, for arrays, R fills the columns, then the rows, and then the rest.
-
-----
-**Visualized difference between vector, matrix and array:**
-
-{% include figure image_path="/assets/images/unit_images/u03/Array.png" caption="Note the structural difference between vectors, matrices and arrays." %}
-
-A vector is one-dimensional, a matrix is two-dimensional and an array is more than two dimensional.
-
-----
-
-# Lists
-A list is an object which can contain many different types of elements inside it like vectors, a matrix, functions and even another list inside it.
-The list is created using the `list()` function. Unlike matrices list elements do not need equal length and same data types.
-
-```r
-# Create a list.
-list1 <- list(c(2,5,3),21.3,sin)
-
-# Print the list.
-print(list1)
-```
-
-When we execute the above code, it produces the following result:
-
-```r
-[[1]]
-[1] 2 5 3
-
-[[2]]
-[1] 21.3
-
-[[3]]
-function (x)  .Primitive("sin")
-```
-It prints one list with three elements. The first element  [[1]] is an vector containing values. The second element [[2]] is a value and the third [[3]] is a function.
-Note, that in lists, that the selection of list element via single square brackets __[]__ preserves the list structure, which means that the result will still be a list if you extract a single element. while __[[]]__ returns the actual value stored within the selected element. Therefore, the choice between __[]__ and __[[]]__ depends on whether you want to work with the structure of the list or extract the values from it.
-
-```r
-list1[1]
-[[1]]
-[1] 2 5 3
-
-list1[[1]]
-[1] 2 5 3
-```
-As with our other non-atomic object type, the data frame, we can name the elements and address these elements with __“$”__
-
-```r
-names(list1) <- c("numbers","my.double","my.sin")
-
-list1$numbers
-[1] 2 5 3
-```
-
-----
-
-# Factors
-In R, a "factor" is a data structure used for fields that takes only predefined, finite number of values (categorical data). In such case, we know the possible values beforehand and these predefined, distinct values are called levels. Factors are more memory-efficient than storing categorical data as character vectors. This is because factors internally represent the data as integers and maintain a separate list of levels. They can have a specific order or hierarchy, which can be important when dealing with ordinal data. Factors with an order can be used in statistical analyses that consider the order of the levels. Using factors helps maintain data integrity by ensuring that values are limited to a predefined set of levels. This reduces the risk of errors and inconsistencies in data entry. 
-
-In such case, we know the possible values beforehand and these predefined, distinct values are called levels.
-
-A factor is created using the function `factor()`. Levels of a factor are inferred from the data if not provided.
-
-```r
-treecover <- factor(c("Spruce", "Spruce","Gap","Beech","Beech","Oak","Oak"))
-treecover
-
-[1] Spruce Spruce Gap Beech Beech Oak Oak
-Levels: Beech Gap Oak Spruce
-```
-
-Here, we can see that factor *treecover* has seven elements and four levels. We can check if a object is a factor or not using `class()` function.
-
-Similarly, levels of a factor can be checked using the `levels()` function. 
-
-```r
-class(treecover)
-[1] "factor"
-
-> levels(treecover)
-[1] "Beech" "Gap" "Oak" "Spruce"
-```
-By default, the levels are assigned alphabetically. You can change this order by directly naming the levels in your preferred order while setting the factor:
-
-```r
-treecover <- factor(c("Spruce", "Spruce","Gap","Beech","Beech","Oak","Oak"), levels=c("Gap","Spruce","Fir","Beech","Oak"))
-treecover
-
-[1] Spruce Spruce Gap Beech Beech Oak Oak
-Levels: Gap Spruce Fir Beech Oak 
-```
-When you define the factor levels explicitly, you are essentially specifying the allowed categories that this factor can have. This is a common practice, especially when you want to ensure that certain levels are present in the factor, or when you want to control the order of the levels.
-However, if you do not explicitly specify all the possible levels when creating a factor, R will, by default, assign missing values (NA) to any values that do not match the predefined levels. This behavior ensures that any values outside the defined levels are recognized as missing data.
-
-```r
-treecover <- factor(c("Spruce", "Spruce","Gap","Beech","Beech","Oak","Oak","Birch"), levels=c("Gap","Spruce","Fir","Beech","Oak"))
-treecover
-
-[1] Spruce Spruce Gap Beech Beech Oak Oak <NA>
-Levels: Gap Spruce Fir Beech Oak 
-```
-If you are working with ordinal data, set ordered=T:
-
-```r
-treecover <- factor(c("Spruce", "Spruce","Gap","Beech","Beech","Oak","Oak","Birch"), levels=c("Gap","Spruce","Fir","Beech","Oak"), ordered=T)
-treecover
-
-[1] Spruce Spruce Gap Beech Beech Oak Oak <NA>
-Levels: Gap<Spruce<Fir<Beech<Oak 
-```
------
-
-
 <!--
 ## Further reading
 {% include figure image_path="/assets/images/unit_images/u03/grid.png" caption="A Matrix by [?](?)" %}
