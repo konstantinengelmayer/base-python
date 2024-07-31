@@ -14,240 +14,170 @@ You may like to store information of various data types like character, integer,
 
 The objects are assigned with R-Objects and the data type of the R-object becomes the data type of the object. There are many types of R-objects. The frequently used ones are:
 
-*	Vectors
+*	Lists
 *	Data Frames
 *	Matrices
 *	Arrays
-*	Lists
-*	Factors
-
-
-The simplest of these objects is the vector object and there are six data types of these atomic vectors, also termed as six classes of vectors. The other R-Objects are built upon the atomic vectors.
-
-| Data Type in R   | Example | Data Type from previous lesson |
-|------------|----------|----------|
-| integer    |1; 15 ; 1984297 | int |
-| numeric    |1.15 ; 1007.28 ; 0.0001 | float |
-| character  |© ; H ; π ; "Hello World"  ;   "Ursus maritimus"  ;   "black"         | character combines character and strings |
-| logical    |true  ;   false         | boolean |
-
-------
 
 # Objects
-Objects are the core of any R program. They contain the information we calculate with and also the calculated results. They also offer the possibility to label data with meaningful names, so that the code is easier to understand. It is helpful to think of objects as containers that hold information. Their sole purpose is to label and store data which then can be used across the code.
+In Python, objects serve a fundamental role in any program. They hold the data we work with and the results of our computations. Objects also allow us to label data with meaningful names, enhancing code readability and comprehension. You can think of objects as containers that store information, similar to how a drawer holds items in the picture below. Their primary purpose is to label and store data, making it accessible throughout the code. 
+- A drawer labeled 'Animals' could contain numbers, which could represent counts of animals.
+- A drawer labeled 'Patients' contains text, holding names or descriptions of patients.
+{% include figure image_path="/assets/images/unit_images/u03/container.webp" %}
 
 **How to name an object?**
 
 > “All things are defined by names. Change the name, and you change the thing” — Terry Pratchett, Pyramids
 
-Even though data is very diverse, objects cannot take every name. This is because they must be unique to the computer. They can contain letters, numbers and underscores ( _ ), though the latter cannot be used at the beginning of the name. All other characters and spaces are not allowed. This restriction is important because R has to understand the input data, furthermore it has to be unique for the program. For example, if minus signs (-) were allowed for naming (which they are not!), there would be an ambiguity with the name `all-animals`. R would not know whether we meant the object `all-animals` or whether we wanted to subtract the object `animals` from the object `all`.
+Even though data is very diverse, objects cannot take every name. This is because they must be unique to the computer. They can contain letters, numbers and underscores ( _ ), though the latter cannot be used at the beginning of the name. All other characters and spaces are not allowed. This restriction is important because R has to understand the input data, furthermore it has to be unique for the program. For example, if minus signs (-) were allowed for naming (which they are not!), there would be an ambiguity with the name `all-animals`. Python would not know whether we meant the object `all-animals` or whether we wanted to subtract the object `animals` from the object `all`.
 
 Instead, we could call it `all_animals`, `AllAnimals`, `allanimals`, `Allanimals` or `allAnimals`.
 
-Note that R distinguishes between upper and lower case for names. `allAnimals` and `AllAnimals` are not the same object and it is not possible to switch them.
-You should generally not use names, which are reserved for functions (e.g mean). Try to find meaningful names, but try to make them relatively short, too.
+Note that python distinguishes between upper and lower case for names. `allAnimals` and `AllAnimals` are not the same object and it is not possible to switch them.
+You should generally not use names, which are reserved for functions (e.g `type()`). Try to find meaningful names, but try to make them relatively short, too.
 
 **How to define objects?**
 
-The assignment operator looks like an arrow (<-) and is used to assign values to objects. It is built through a smaller-than (or greater-than)-symbol and a minus.
-In R there are several possibilities to define an object:
-
+The assignment operator is the equal sign `=` and is used to assign values or characters to objects.
 ```r
-# Assign the value y to object x
-x <- value_y
-value_y -> x
-```
-These two do the same: they assign a value to the object x, but the first variant is used much more often than the second.
+# Assign the value 4 to object x
+x = 4
 
-Second Example:
-```r
-# Assign the value "Hello World" to object "greeting"
-greeting <- "Hello World."
+# Assign the name "Peter" to object y
+y = "Peter"
 
-#show content of object "greeting"
-greeting
-[1] Hello World.
+# To show the content of a variable we can do this
+y
+# Output: 'Peter'
+
+x
+# Output: 4
 ```
-You could also use the "=" sign to assign objects. However, the = operator is conventionally used to specify named arguments in function calls. To avoid ambiguity and potential conflicts between function argument names and object names, using <- for assignment helps reduce the chance of errors.
 
 -----
 
-# Vectors
-If you want to store more than one value to an object you need a vector. It is a basic data structure and contains elements of the same type. The data types can be logical, integer, double and character.
+# Lists
+If you want to store more than one value to an object you need a list. It is a basic data structure and contains elements of the same or different data type.
 
-When you want to create a vector with more than one element, you need to use the `c()` function which means to combine the elements into a vector (c for combine).
+When you want to create a list with more than one element, you use square brackets `[]` to combine the elements into a list.
 
 
-```r
-apple <- c("red", "green","yellow")
-apple
-
-[1] "red"    "green"  "yellow"
+```python
+# Creating a list with multiple elements
+apple = ["red", "green", "yellow"]
+print(apple)  
+# Output: ['red', 'green', 'yellow']
 ```
 
-A vector’s type can be checked with the `typeof()` function. apple is a word not a number therefore it is a character (in other words a string).
+You can check the type of the list using the type() function.
 
-```r
-# Ask for the class of the vector
-apple <- c("red", "green","yellow")
-typeof(apple)
-
-[1] "character"
+```python
+# Checking the type of the list
+print(type(apple))  
+# Output: <class 'list'>
 ```
 
-Another important property of a vector is its length. This is the number of elements in the vector and can be checked with the function `length()`. In this case the length is 3. Three Values for "red", "green" and "yellow".
+Another important property of a list is its length. This is the number of elements in the list and can be checked with the len() function. In this case, the length is 3, for "red", "green", and "yellow".
 
-```r
-#Ask for the length of the vector
-apple <- c("red", "green","yellow")
-length(apple)
-
-[1] 3
+```python
+print(len(apple))  
+# Output: 3
 ```
 
-A vector can only contain values of the same data type.
+A list can contain values of different data types, unlike R vectors.
 
-You can add elements, again by using c()
+You can add elements using the append() method or by concatenating lists.
 
-```r
-#add an element
-apple <- c(apple, "brown")
-apple
+```python
+# Adding an element
+apple.append(10)
+print(apple)  
+# Output: ['red', 'green', 'yellow', 10]
 
-[1] "red"    "green"  "yellow"   "brown"
+# Adding multiple elements
+apple += ["blue", "5"]
+print(apple)  
+# Output: ['red', 'green', 'yellow', 'brown', 'blue', '10, 'blue', 5]
 ```
 
-If needed, you can also assign names to the single elements:
+If you need to repeat an element of a list several times, you can use the multiplication operator `*`:
 
-```r
-#add names
-names(apple) <- c("Col1","Col2","Col3","Col4")
-apple
-
- Col1       Col2      Col3      Col4
-"red"    "green"  "yellow"   "brown"
+```python
+# Repeat elements
+applebucket = apple * 3
+print(applebucket)
+# Output: ['red', 'green', 'yellow', 'brown', 'blue', '10, 'blue', 5, 'red', 'green', 'yellow', 'brown', 'blue', '10, 'blue', 5, 'red', 'green', 'yellow', 'brown', 'blue', '10, 'blue', 5]
 ```
-If you need to repeat an element of a vector several times, you can use the  rep()-function:
-
-```r
-#repeat
-applebucket <- rep(apple,3)
-applebucket
-
-    Col1     Col2     Col3     Col4     Col1     Col2     Col3     Col4 
-   "red"  "green" "yellow"  "brown"    "red"  "green" "yellow"  "brown" 
-    Col1     Col2     Col3     Col4 
-   "red"  "green" "yellow"  "brown" 
-```
-The whole vector is repeated three times. Check the arguments of ?rep to find a way of repeating each element in the vector three times.
-
-**vectorization**
-
-In R,  most (but not all!) functions are automatically applied to all elements of a vector.
-
-{% include figure image_path="/assets/images/unit_images/u03/vectorization.png" %}
-
-When you perform an operation on two vectors of the same length, R will automatically apply the operation element-wise, meaning it performs the operation between the corresponding elements of the vectors
-
-```r
-x <- c(1,2,3)
-y <- c(4,5,6)
-result <- x+y
-result
-[1] 5,7,9
-
-```
-**Recycling**
-
-If you perform operations on vectors of different lengths, R will automatically recycle or repeat the shorter vector to match the length of the longer vector. This can be powerful but should be used with caution to avoid unexpected results.
-
-{% include figure image_path="/assets/images/unit_images/u03/Recycling.png" %}
-
-
------
+-----------
 
 # Dataframe
-A data frame is a two dimensional data structure. It is a special case of a list which has each component of __equal length__.
-Each column represents a variable, which must have the same data type, and each row represents an observation or a case. Unlike matrices, however, data frames can hold columns of different data types (e.g., numeric, character, factor, date, etc.). This tabular structure makes data frames suitable for storing and working with structured data and allows you to represent real-world datasets with mixed data types in a single data structure. 
-Data frames are built with the data.frame() function 
+In Python, data frames are provided by the `pandas` library. A data frame is a two-dimensional data structure, similar to a list of equal-length lists. Each column represents a variable, and each row represents an observation or case. Unlike matrices, data frames can hold columns of different data types (e.g., numeric, string, date, etc.). This makes data frames suitable for storing and working with structured data and allows you to represent real-world datasets with mixed data types in a single structure. Data frames are built with the `pd.DataFrame()` function.
+
+```python
+import pandas as pd
+
+# Creating lists
+a = ["Peter", "Sabine", "Rachel", "Ray", "Ashley"]
+b = [24, 42, 12, 56, 57]
+c = [1.54, 1.85, 1.30, 1.97, 1.64]
+d = [True, False, False, True, False]
+
+# Creating a data frame from lists with assigned column names
+patients = pd.DataFrame({
+    'Name': a,
+    'Age': b,
+    'Height': c,
+    'Ill': d
+})
+
+print(patients)
+# Output:
+#     Name  Age  Height    Ill
+# 0   Peter   24    1.54   True
+# 1  Sabine   42    1.85  False
+# 2  Rachel   12    1.30  False
+# 3     Ray   56    1.97   True
+# 4  Ashley   57    1.64  False
+```
+In Python, data frames provided by the pandas library have column names (variable names) and row names (often called row labels) that help identify and reference specific variables and observations. You can access columns using the dot operator or square brackets `[]`, and you can access rows by their index or labels.
 
 ```r
-a <- c("A", "B", "C", "A", "B", "A", "A") # create a vector called a
-b <- c("X", "X", "X", "X", "Y", "Y", "Y") # create a vector called b
-c <- c(1, 2, 3, 4, 5, 6, 7) # create a vector called c
-d <- c(10, 20, 30, 40, 50, 60, 70) # create a vector called d
+# Accessing columns
+print(patients.Name)  # Using dot operator
+print(patients['Name'])  # Using square brackets
+# Output:
+# 0     Peter
+# 1    Sabine
+# 2    Rachel
+# 3       Ray
+# 4    Ashley
+# Name: Name, dtype: object
 
-# create a data frame from previous vectors with assigned column names to vectors.
-df <- data.frame(Cat1 = a, Cat2 = b, Val1 = c, Val2 = d)
-
-print(df)
-
-   Cat1 Cat2 Val1 Val2
-1    A    X    1   10
-2    B    X    2   20
-3    C    X    3   30
-4    A    X    4   40
-5    B    Y    5   50
-6    A    Y    6   60
-7    A    Y    7   70
+# Accessing rows by index and label
+# because the row is at index 0 but is also called 0 we ask for the same
+print(patients.iloc[0])  # Accessing the first row
+print(patients.loc[0])  # Accessing the row with label 0
+# Output:
+# Name      Peter
+# Age          24
+# Height     1.54
+# Ill        True
+# Name: 0, dtype: object
 
 ```
-Data frames have column names (variable names) and row names (often called row labels or row names) that help identify and reference specific variables and observations. You can access columns using the __$__ operator or square brackets __[ ]__, and you can access rows by their index or labels. For more details, see Unit 04
-You can use functions like __str()__ to check the data type of the column.  __summary()__ summarizes the of the columns. For numeric variables, it provides basic summary statistics for that vector, including the minimum, 1st quartile, median, mean, 3rd quartile, and maximum values. Note, that you can also apply this function to vectors!
-If you want to quickly inspect the first few rows a  long dataframe, you can use the  __head()__-function. The default behavior of __head()__ is to display the first 6 rows or elements, but you can specify a different number if needed.
 
-With __nrow()__ and __ncol()__, you can return the number of rows and columns, respectively.
-
+New columns can be directly assigned:
 ```r
-str(df)
-'data.frame':	7 obs. of  4 variables:
- $ Cat1: chr  "A" "B" "C" "A" ...
- $ Cat2: chr  "X" "X" "X" "X" ...
- $ Val1: num  1 2 3 4 5 6 7
- $ Val2: num  10 20 30 40 50 60 70
-
-summary(df)
-     Cat1               Cat2                Val1          Val2   
- Length:7           Length:7           Min.   :1.0   Min.   :10  
- Class :character   Class :character   1st Qu.:2.5   1st Qu.:25  
- Mode  :character   Mode  :character   Median :4.0   Median :40  
-                                       Mean   :4.0   Mean   :40  
-                                       3rd Qu.:5.5   3rd Qu.:55  
-                                       Max.   :7.0   Max.   :70  
-
-head(df, n=3)
-  Cat1 Cat2 Val1 Val2
-1    A    X    1   10
-2    B    X    2   20
-3    C    X    3   30
-
-```
-
-Columns can be attached using __cbind()__  or directly assigned:
-```r
-BoolVec <- c(T,T,T,F,F,F,F)
-df_vers2 <- cbind(df,BoolVec)
-df_vers2
-  Cat1 Cat2 Val1 Val2 BoolVec
-1    A    X    1   10    TRUE
-2    B    X    2   20    TRUE
-3    C    X    3   30    TRUE
-4    A    X    4   40   FALSE
-5    B    Y    5   50   FALSE
-6    A    Y    6   60   FALSE
-7    A    Y    7   70   FALSE
-
-
-df_vers3$BoolVec <- c(T,T,T,F,F,F,F)
-df_vers2
-  Cat1 Cat2 Val1 Val2 BoolVec
-1    A    X    1   10    TRUE
-2    B    X    2   20    TRUE
-3    C    X    3   30    TRUE
-4    A    X    4   40   FALSE
-5    B    Y    5   50   FALSE
-6    A    Y    6   60   FALSE
-7    A    Y    7   70   FALSE
+# Adding a new column using direct assignment
+patients['Last_Name'] = ['Müller','Schmidt','Smith','Brown','Rodriguez']
+print(patients)
+# Output:
+#      Name  Age  Height    Ill  Last_Name
+# 0   Peter   24    1.54   True     Müller
+# 1  Sabine   42    1.85  False    Schmidt
+# 2  Rachel   12    1.30  False      Smith
+# 3     Ray   56    1.97   True      Brown
+# 4  Ashley   57    1.64  False  Rodriguez
 ```
 
 -----

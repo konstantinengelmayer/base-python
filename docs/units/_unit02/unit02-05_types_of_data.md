@@ -60,16 +60,14 @@ It is used to represent text rather than numbers. It is comprised of a set of ch
 ### Logical or boolean
 Logical values or boolean values can only contain either the value **true** or **false**.
 
-### When things are lost …NULL-values
-When there are missing or undefined values in your data, they’ll be indicated by different so-called NULL-Values
+### When things are lost …None-values
+When there are missing or undefined values in your data, they’ll be indicated by different so-called None-Values.
 
- **NA** is a logical constant of length 1 and stands for "Not Available". It is used to represent missing or undefined values in a dataset where a value should be present but is unknown or unavailable.
+**None** is a special constant in Python that represents the absence of a value or a null object. It is used to indicate that a value is missing or undefined in a dataset where a value should be present but is unknown or unavailable.
 
-**NULL** represents the null object : It is a value that typically represents a complete absence of data or a value that cannot be defined. It is often returned when a function results in an undefined value. 
+**NaN** (Not-a-Number) is a special floating-point value that represents the result of an undefined or unrepresentable mathematical operation. It applies to numerical values and is often encountered in numeric calculations where the result is not a valid number. In Python, NaN can be found in the `math` and `numpy` libraries.
 
-**NaN** (Not-a-Number): is a logical vector of a length 1 and represents the result of an undefined or unrepresentable mathematical operation. It applies to numerical values, but not to values of integer vector and is often encountered in numeric calculations where the result is not a valid number.
-
-**Inf / - Inf** represents positive (or negative) infinity in R. It is used when a value is too large to be represented as a finite number. Typically, it results from mathematical operations like dividing a number by zero.
+**inf** and **-inf** represent positive and negative infinity, respectively, in Python. They are used when a value is too large to be represented as a finite number. Typically, these values result from mathematical operations like dividing a number by zero. inf and -inf can also be found in the `math` and `numpy` libraries.
 
 
 

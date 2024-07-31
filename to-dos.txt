@@ -1,0 +1,4 @@
+- Pictures
+- where to insert introduction to lybraries such as numpy
+- Unit01 Python environment and IDLE
+- Unit02-08 dataCamp exercise
