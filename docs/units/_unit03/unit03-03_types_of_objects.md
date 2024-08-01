@@ -271,10 +271,3 @@ print(array_3d)
 #   [17 18 19 20]
 #   [21 22 23 24]]]
 ```
-```
-<!--
-## Further reading
-{% include figure image_path="/assets/images/unit_images/u03/grid.png" caption="A Matrix by [?](?)" %}
-
-add some day
--->

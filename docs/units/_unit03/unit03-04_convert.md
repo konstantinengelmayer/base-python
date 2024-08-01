@@ -11,34 +11,35 @@ header:
 
 ---
 
-*How to convert vectors see Unit 2: [Converting Types of Data](/moer-base-r/unit02/unit02-06_convert.html)*
+*How to convert arrays, see Unit 2: [Converting Types of Data](/moer-base-r/unit02/unit02-06_convert.html)*
 
-* Use `is.` to test for data type. Returns TRUE or FALSE
-* Use `as.` to explicitly convert it.
+* Use `isinstance` to test for data type. Returns True or False.
+* Use `astype` to explicitly convert it.
 
-|   | to vector | to matrix | to dataframe |
+|   | to array | to matrix | to dataframe |
 |------------|-------------|-------------|-------------|
-| <b>from vector</b> | c(x,y) | cbind(x,y) <br>rbind(x,y) | data.frame(x,y) |
-| <b>from matrix</b>  | as.vector(mymatrix)  |  | as.data.frame(mymatrix) |
-| <b>from dataframe</b>  |  | as.matrix(myframe) | |
+| <b>from array</b> | np.array([x, y]) | np.column_stack((x, y)) <br> np.row_stack((x, y)) | pd.DataFrame({'x': x, 'y': y}) |
+| <b>from matrix</b>  | np.array(mymatrix).flatten()  |  | pd.DataFrame(mymatrix) |
+| <b>from dataframe</b>  |  | df.values | |
 
-The functions `rbind()` and `cbind()` can be used to bind vectors together. rbind (row bind)
-arranges the vectors row by row, cbind (column bind) column by column.
+The functions `np.row_stack()` and `np.column_stack()` can be used to bind arrays together. `np.row_stack` arranges the arrays row by row, `np.column_stack` arranges them column by column.
 
-```
-v1 <- c(1:3)
-v2 <- c(4:6)
+```python
+import numpy as np
 
-rbind(v1,v2)
- [,1] [,2] [,3]
-v1 1 2 3
-v2 4 5 6
+v1 = np.array([1, 2, 3])
+v2 = np.array([4, 5, 6])
 
-cbind(v1,v2)
- v1 v2
-[1,] 1 4
-[2,] 2 5
-[3,] 3 6
+print(np.row_stack((v1, v2)))
+# Output:
+# [[1 2 3]
+#  [4 5 6]]
+
+print(np.column_stack((v1, v2)))
+# Output:
+# [[1 4]
+#  [2 5]
+#  [3 6]]
 ```
 <!--more-->
 

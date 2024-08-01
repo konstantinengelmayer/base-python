@@ -5,47 +5,26 @@ header:
   image_description: "Android Market-share Worldwide 2018-2020"
   caption: "Mobile Android operating system market share by version worldwide from 2018 to 2020: [StatCounter](https://gs.statcounter.com/android-version-market-share/mobile/worldwide/#monthly-201907-202001) [via Statista](https://www.statista.com/statistics/921152/mobile-android-version-share-worldwide/)"
 ---
-*Setting up R and auxiliary programs for operating R and introducing a few tools if you get stuck.*
+*Setting up python and auxiliary programs for operating python and introducing a few tools if you get stuck.*
 <!--more-->
 
-R is a programming language designed created by Ross Ihaka and Robert Gentleman in 1992. As a an open-source language, which means that it is freely available for anyone to use, modify, and distribute, it became a popular tool for statistical analysis and data visualization with an active user community. It includes a wide range of statistical and graphical techniques, provides extensive tools for data manipulation, transformation, and cleaning and is highly extensible, allowing users to write their own functions and packages. This extensibility has led to a vast ecosystem of contributed packages for a wide range of specialized tasks and domains, including geography.
-Base R hat no graphical user interface for data preparation or analysis. These tasks are only performed by entering code into the script. Although this approach may seem intimidating to first-time users, it has the advantage of requiring thoughtful consideration of the analysis while simultaneously documenting all steps. Another advantage is that, in R, many analysis steps can be automated once they are defined.
-
-> “Since then, the popularity of R has grown in leaps and bounds because of its unrivaled flexibility for data analysis and powerful graphical tools, all for the princely sum of *nothing*.”
- -- Tilman M. Davies, The book of R 
-
-## Getting to know R
-{% include figure image_path="/assets/images/unit_images/u01/gui_r.png" caption="**User Interface of R:** *“the functional appearance of the interpreter, which in my experience has struck fear into the heart of so many an undergraduate, stays true zo the very nature of the software – a blank statistical canvas that can be used for any number of tasks”*- Tilman M. Davies, The book of R " %}
+# Python
+Python is a high-level, interpreted programming language created by Guido van Rossum and first released in 1991. It is known for its readability, simplicity, and versatility, which contribute to its widespread popularity. Python's design philosophy emphasizes code readability, allowing programmers to express concepts in fewer lines of code compared to other languages like C++ or Java. Its syntax is clear and easy to understand, making it an excellent choice for beginners and enabling developers to write and maintain code efficiently. Python boasts an extensive ecosystem of libraries and frameworks, such as NumPy, Pandas, Django, and Flask, which facilitate tasks in web development, data analysis, machine learning, and more. The language also benefits from a large and active community, providing a wealth of resources, documentation, and support for developers.
 
 
 
-The *[r-project](https://www.r-project.org/)* describe their work as such:
+## Visual Studio Code
+Python itself does not come with a graphical user interface (GUI), but Integrated Development Environments (IDEs) are often used to enhance the development experience. A programming language is a formal system for writing instructions that a computer can execute, while an IDE provides a comprehensive suite of tools to facilitate coding with python. IDEs offer features like syntax highlighting, code completion, debugging tools, and project management, which streamline coding and improve productivity. Visual Studio Code (VS Code) is a popular IDE for Python development due to its extensive customization options, and a wide range of extensions that support Python programming. VS Code offers an integrated terminal, version control, and seamless integration with various Python tools and libraries, making it an excellent choice for both beginners and experienced developers.
+{% include figure image_path="/assets/images/unit_images/u01/vs_code.PNG" %}
 
+## Miniconda
+Miniconda is a minimal installer for conda, a package and environment management system. It provides a lightweight, quick way to install and manage multiple versions of Python and its packages, enabling developers to create isolated environments for different projects. This isolation helps avoid conflicts between dependencies and ensures that each project has access to the specific packages and versions it needs. Miniconda is particularly useful in data science and machine learning, where different projects may require different versions of libraries. By using Miniconda, developers can maintain clean, manageable environments, making their workflow more efficient and reliable.
 
-> One of R’s strengths is the ease with which well-designed publication-quality plots can be produced, including mathematical symbols and formulae where needed. Great care has been taken over the defaults for the minor design choices in graphics, but the user retains full control.
->
-> Many users think of R as a statistics system. We prefer to think of it as an environment within which statistical techniques are implemented. R can be extended (easily) via packages. There are about eight packages supplied with the R distribution and many more are available through the CRAN family of Internet sites covering a very wide range of modern statistics.
->
-> R is available as Free Software under the terms of the Free Software Foundation’s GNU General Public License in source code form. It compiles and runs on a wide variety of UNIX platforms and similar systems (including FreeBSD and Linux), Windows and MacOS.
+--------
+So basically python is the programming language we work with. We download and manage Python using Miniconda and write and edit our Python scripts in Visual Studio Code.
 
--------
+{% include figure image_path="/assets/images/unit_images/u01/flowchart_python.png" %}
 
-## Getting to know RStudio
-{% include figure image_path="/assets/images/unit_images/u01/gui_rstudio.png" caption="User Interface of RStudio" %}
-
-RStudio is an integrated development environment (IDE) for R. It includes a console, syntax-highlighting editor that supports direct code execution, as well as tools for plotting, history, debugging and workspace management.
-
----
-
-## What is the difference between R and RStudio?
-
-Cran R (or simply R) is a programming language or a software environment as they call it for scientific computing and graphics and RStudio is an IDE for using R.
-
-R and RStudio are not two different versions of the same thing. One can't be substituted for the other. In fact, they work together. R is a programming language for statistical calculation. And RStudio is an Integrated Development Environment (IDE) that helps you develop programs in R. So if you want to learn more about them, you should start by learning R programming.
-
-You can use R without using RStudio, but you can't use RStudio without using R, so R comes first.
-
-Now that this is clear, we continue with the installation:
 
 <!--
 ## Further reading

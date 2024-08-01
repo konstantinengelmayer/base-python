@@ -7,22 +7,46 @@ header:
   image_description: "Android Market-share Worldwide 2018-2020"
   caption: "Mobile Android operating system market share by version worldwide from 2018 to 2020: [StatCounter](https://gs.statcounter.com/android-version-market-share/mobile/worldwide/#monthly-201907-202001) [via Statista](https://www.statista.com/statistics/921152/mobile-android-version-share-worldwide/)"
 ---
-*How to install R and RStudio?*
+*How to install Python, MiniConda an VS Code?*
 <!--more-->
 
 
-## Installing R
-Go and visit [cran.r-project.org](https://cran.r-project.org/) to learn more about R or choose your operating system and go directly to the download page. Cran R is available for following systems:
+# Setting Up Python, Miniconda, and Visual Studio Code
 
+This tutorial will guide you through downloading Python, creating a virtual environment using Miniconda, and setting up Visual Studio Code to use the virtual environment.
 
-* [Download R for Linux](https://cran.r-project.org/bin/linux/){:target="_blank"}
-* [Download R for (Mac) OS X](https://cran.r-project.org/bin/macosx/){:target="_blank"}
-* [Download R for Windows](https://cran.r-project.org/bin/windows/base/){:target="_blank"}
+## Step 1: Download and Install Miniconda
 
+1. Go to the [Miniconda download page](https://docs.conda.io/en/latest/miniconda.html).
+2. Download the appropriate installer for your operating system (Windows, macOS, or Linux).
+3. Run the installer and follow the installation instructions.
 
-## RStudio
+## Step 2: Create a Virtual Environment with Miniconda
 
-Then go to [rstudio.com](https://rstudio.com/) and learn more about Rstudio. Alternatively you can also **[click here](https://rstudio.com/products/rstudio/download/#download){:target="_blank"}** and you will be taken directly to the download area of RStudio (Windows).
+1. Open your miniconda powershell.
+2. Create a new virtual environment by running the following command:
+   ```sh
+   conda create -n myenv python=3.9
+   ```
+   Replace `myenv` with the name you want for your environment and `3.9` with the desired Python version.
+3. Activate you new virtual environment calling its name and download necessary libraries for the course:
+   ```sh
+   conda activate myenv
+   conda install numpy
+   conda install pandas
+  ```
+{% include figure image_path="/assets/images/unit_images/u01/miniConda.PNG" %}
+
+## Step 3: Download Visual Studio Code
+1. Go to the Visual Studio Code download page.
+2. Download the appropriate installer for your operating system.
+3. Run the installer and follow the installation instructions.
+
+## Step 4: Install Extensions in Visual Studio Code
+1. Open Visual Studio Code.
+2. Install the Python extension:
+3. Go to the Extensions view by clicking on the Extensions icon in the Activity Bar on the side of the window or pressing Ctrl+Shift+X. Search for "Python" and install the extension published by Microsoft.
+4. Install the Jupyter extension: In the Extensions view, search for "Jupyter" and install the extension also published by Microsoft.
 
 <!--
 ## Further reading
