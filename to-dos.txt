@@ -1,5 +1,6 @@
 - Pictures
 - where to insert introduction to lybraries such as numpy
 - Unit01_03-08
-- Unit02-08 dataCamp exercise
-- Unit03-
+- Unit02_08 dataCamp exercise
+- Unit03_07 summary
+- Unit04_04 summary

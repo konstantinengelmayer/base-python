@@ -18,355 +18,307 @@ There are multiple ways to access or replace values in vectors or other data str
 
 Note that brackets `[]` are used for indexing, whereas parentheses `( )` are used to call a function.
 
-## Vector
-Here are some examples that show how elements of vectors can be obtained by indexing.
+## Arrays
+Here are some examples that show how elements of arrays can be obtained by indexing.
 
 Consider vector `v`:
-```
+```python
+# load NumPy library
+import numpy as np
+
 # Generating some data
-v <- 10:15
-v
-
-## [1] 10 11 12 13 14 15
+v = np.arange(10, 16)
+print(v)
+# Output:
+# [10 11 12 13 14 15]
 ```
-Note the square bracket. It shows the number in whose place the value is placed.
+Note that when working with ranges or slicing in python, the ending value is never included. So even if we set a range of 10 to 16 the output values range from 10 to 15.<br>
 
-```
+Now lets start indexing. Let's get the first element of the array and print it.
+```python
 # Get the first element of a vector
-v[1]
-
-## [1] 10
-
-
-# Get the second element of a vector
-v[2]
-
-## [1] 11
-
-
-# Get elements 2 and 3
-v[2:3]      # this means position two to three
-v[c(2,3)]   # and this means position two and three
-
-## [1] 11 12
-
-
-# Now a more advanced example, return all elements except the second
-
-v[c(1,3:6)] # this is one possible way
-v[-2]       # and this is the much simpler way
-
-## [1] 10 12 13 14 15
+print(v[0])  # Output: 10
 ```
+As you see we used a 0 instead of a 1 to access the first value of the array. This is because python's indexing start with 0. So if we want to access the fourth element we would need to write a 3 like this.
+
+```python
+# Accessing the fourth element
+print(v[3])  # Output: 13
+```
+You can also access multiple elements at a time using ranges or another pair of `[]` to chose elements which are not directly next to each other. 
+```python
+print(v[1:3])  # Output: [11 12]
+
+print(v[[1, 3]]) #  Output: [11, 13]
+```
+As you see here again the last index of the range (3) is not included in the out. 
 
 You can also use an index to change values
 
-```
-v[1] <- 11 # Change position 1 from 10 to 11
-v
+```python
+v[0] = 11 # Change position 1 from 10 to 11
+print(v) # Output: [11 11 12 13 14 15]
 
-## [1] 11 11 12 13 14 15
+v[[3,5]] = [0,5]
+print(v) # Output: [11 11 12  0 14  5]
 
-v[3:6] <- -99  # change the positions 3 to 6 to -99
-v
-
-## [1]  11  11 -99 -99 -99 -99
+v[1:6] = -99
+print(v) # Output: [ 11 -99 -99 -99 -99 -99]
 ```
 
 ## Matrix
 Consider matrix `m`.
+```python
+import numpy as np
+
+# Creating the matrix
+m = np.array([[1, 2, 3], [4, 5, 6], [7, 8, 9]])
+
+# Printing the matrix
+print(m)
+
+# Output:
+# [[1 2 3]
+#  [4 5 6]
+#  [7 8 9]]
 ```
-m <- matrix(1:9, nrow=3, ncol=3, byrow=TRUE)
-colnames(m) <- c('a', 'b', 'c')
-m
 
-##      a b c
-## [1,] 1 2 3
-## [2,] 4 5 6
-## [3,] 7 8 9
-```
+Like arrays, values of matrices can be accessed through indexing. There are different ways to do this, but it is generally easiest to use two numbers in a double index, the first for the row number(s) and the second for the column number(s).
 
-Like vectors, values of matrices can be accessed through indexing. There are different ways to do this, but it is generally easiest to use two numbers in a double index, the first for the row number(s) and the second for the column number(s).
+```python
+# One value in row 2, column 2
+print(m[1, 1])
 
-```
-# one value in row 2, column 2
-m[2,2]
+# Output:
+# 5
 
-## b
-## 5
+# Another one in row 1, column 3
+print(m[0, 2])
 
-# another one in row 1, column 3
-m[1,3]
-
-## c
-## 3
+# Output: 
+# 3
 ```
 
 You can also get multiple values at once.
 
-```
-# 2 columns and rows
-m[1:2,1:2]
+```python
+# 2 rows and 2 columns
+print(m[0:2, 0:2])
 
-##      a b
-## [1,] 1 2
-## [2,] 4 5
+# Output:
+# [[1 2]
+#  [4 5]]
 
-# entire row
-m[2, ]
+# Entire row
+print(m[1, :])
 
-## a b c
-## 4 5 6
+# Output:
+# [4 5 6]
 
-# entire column
-m[ ,2]
+# Entire column
+print(m[:, 1])
 
-## [1] 2 5 8
-```
-
-Or use the column names for sub-setting.
-
-```
-#single column
-m[, 'b']
-
-## [1] 2 5 8
-
-# two columns
-m[, c('a', 'c')]
-
-##      a c
-## [1,] 1 3
-## [2,] 4 6
-## [3,] 7 9
+# Output:
+# [2 5 8]
 ```
 
-Instead of indexing with two numbers, you can also use a single number. You can think of this as a “cell number”. Cells are numbered column-wise (i.e., first the rows in the first column, then the second column, etc.). Thus,
+You can also use slicing to get specific columns or rows
 
+```python
+# Single column
+print(m[:, 1])
+
+# Output:
+# [2 5 8]
+
+# Two columns
+print(m[:, [0, 2]])
+
+# Output:
+# [[1 3]
+#  [4 6]
+#  [7 9]]
 ```
-m[2,2]
+Setting values of a matrix is similar to how you would do that for an arrays, except that you now need to deal with two dimensions.
 
-## b
-## 5
+```python
+# One value
+m[0, 0] = 5
+print(m)
 
-# is equivalent to
-m[5]
+# Output:
+# [[5 2 3]
+#  [4 5 6]
+#  [7 8 9]]
 
-## [1] 5
-```
+# A row
+m[2, :] = 10
+print(m)
 
-Note that the example below returns a vector.
-
-```
-m[ ,2]
-## [1] 2 5 8
-```
-
- This is because a single-column matrix can be simplified to a vector. In that case the matrix structure is ‘dropped’. This is not always desirable, and to keep this from happening, you can use the `drop=FALSE` argument.
-
-```
-m[ , 2, drop=FALSE]
-
-##      b
-## [1,] 2
-## [2,] 5
-## [3,] 8
-```
-
-Setting values of a matrix is similar to how you would do that for a vector, except that you now need to deal with two dimensions.
-
-```
-# one value
-m[1,1] <- 5
-m
-
-##      a b c
-## [1,] 5 2 3
-## [2,] 4 5 6
-## [3,] 7 8 9
-
-
-# a row
-m[3,] <- 10
-m
-
-##       a  b  c
-## [1,]  5  2  3
-## [2,]  4  5  6
-## [3,] 10 10 10
+# Output:
+# [[ 5  2  3]
+#  [ 4  5  6]
+#  [10 10 10]]
 ```
 
 ## List
-Indexing lists can be a bit confusing as you can both refer to the elements of the list, or the elements of the data (perhaps a matrix) in one of the list elements. Note the difference that double brackets make. `e[3]` returns a list (of length 1), but `e[[3]]` returns what is inside that list element (a matrix in this case).
+Indexing lists can be a bit confusing as you can both refer to the elements of the list, or the elements of the data (perhaps a matrix) in one of the list elements.
 
-```
-m <- matrix(1:9, nrow=3, ncol=3, byrow=TRUE)
-colnames(m) <- c('a', 'b', 'c')
-e <- list(list(1:3), c('a', 'b', 'c', 'd'), m)
+```python
+# Create a list containing another list, a list of strings, and a NumPy matrix
+import numpy as np
+e = [[1, 2, 3], ['a', 'b', 'c', 'd'], np.array([[1, 2, 3], [4, 5, 6], [7, 8, 9]])]
+
+print(e)
+
+# Output:
+# [[1, 2, 3], ['a', 'b', 'c', 'd'], array([[1, 2, 3],
+#        [4, 5, 6],
+#        [7, 8, 9]])]
 ```
 
 We can access data inside a list element by combining double and single brackets. By using the double brackets, the list structure is dropped.
 
+```python
+# Accessing an element of the list (returns a list)
+print(e[1])
+# Output: ['a', 'b', 'c', 'd']
+
+# Accessing the contents of the list element directly
+print(e[1][0])
+# Output: 'a'
+
+# Accessing the contents of the matrix
+print(e[2][1,1])
+# Output: 5
 ```
-e[2]
-## [[1]]
-## [1] "a" "b" "c" "d"
-e[[2]]
-## [1] "a" "b" "c" "d"
-```
-
-List elements can have names.
-
-```
-names(e) <- c('zzz', 'xyz', 'abc')
-```
-
-And the elements can be extracted by their name, either as an index, or by using the `$` (dollar) operator.
-
-```
-e$xyz
-## [1] "a" "b" "c" "d"
-
-e[['xyz']]
-## [1] "a" "b" "c" "d"
-```
-The `$` can also be used with data.frame objects (a special list, after all), but not with matrices.
-
-
 
 ## Data.frame
-Indexing a data.frame can generally be done as for matrices and for lists.
+ndexing a DataFrame in Python can be done similarly to indexing matrices and lists, using the pandas library.
 
-First create a data.frame from matrix `m`.
+First, create a DataFrame from a NumPy array m.
 
-```
-d <- data.frame(m)
-class(d)
+```python
+# Create a DataFrame from the matrix
+d = pd.DataFrame(m, columns=['a', 'b', 'c'])
+print(type(d))
+# Output: <class 'pandas.core.frame.DataFrame'>
 
-## [1] "data.frame"
+print(d)
+# Output:
+#    a  b  c
+# 0  1  2  3
+# 1  4  5  6
+# 2  7  8  9
 ```
 
 You can extract a column by column number.
 
+```python
+# Extract the second column by index
+print(d.iloc[:, 1])
+# Output:
+# 0    2
+# 1    5
+# 2    8
+# Name: b, dtype: int64
 ```
-d[,2]
+But you can also extract a column by name
 
-## [1] 2 5 8
+```python
+# Extract the second column by name
+print(d['b'])
+# Output:
+# 0    2
+# 1    5
+# 2    8
+# Name: b, dtype: int64
 ```
-Here is an alternative way to address the column number in a data.frame.
+You can also use the dot notation or the get method.
 
+```python
+# Using dot notation to get the column values
+print(d.b)
+# Output:
+# 0    2
+# 1    5
+# 2    8
+# Name: b, dtype: int64
+
+# Or using the .get method
+print(d.get('b'))
+# Output:
+# 0    2
+# 1    5
+# 2    8
+# Name: b, dtype: int64
 ```
-d[2]
 
-##   b
-## 1 2
-## 2 5
-## 3 8
-```
 
-Note that whereas `[2]` would be the second element in a matrix, it refers to the second column in a `data.frame`. This is because a `data.frame` is a special kind of list and not a special kind of matrix.
+By default, pandas will drop the DataFrame structure when selecting a single column, returning a Series. To prevent this and keep the DataFrame structure:
 
-You can also use the column name to get values. This approach also works for a matrix.
+```python
+# Select a column without dropping the DataFrame structure
+print(d[['b']])
+# Output:
+#    b
+# 0  2
+# 1  5
+# 2  8
 
-```
-d[, 'b']
-
-## [1] 2 5 8
-```
-
-But with a data.frame you can also do
-
-```
-d$b
-## [1] 2 5 8
-
-# or this
-
-d[['b']]
-## [1] 2 5 8
-```
-All these return a vector. That is, the complexity of the data.frame structure was dropped. This does not happen when you do
-
-```
-d['b']
-
-##   b
-## 1 2
-## 2 5
-## 3 8
-```
-or
-
-```
-d[ , 'b', drop=FALSE]
-
-##   b
-## 1 2
-## 2 5
-## 3 8
+# Another way to avoid dropping is to use the loc method
+print(d.loc[:, ['b']])
+# Output:
+#    b
+# 0  2
+# 1  5
+# 2  8
 ```
 
 Why should you care about this drop business? Well, in many cases R functions want a specific data type, such as a matrix or data.frame and report an error if they get something else. One common situation is that you think you provide data of the right type, such as a data.frame, but that in fact you are providing a vector, because the structure dropped.
 
-## Which, %in% and match
+## Finding Indices, isin, and match
 Sometimes you do not have the indices you need, and so you need to find them. For example, what are the indices of the elements in a vector that have values above 15?
 
+```python
+import numpy as np
+
+# Create a numpy array
+x = np.arange(10, 21)
+i = np.where(x > 15)
+print(x)
+# Output: [10 11 12 13 14 15 16 17 18 19 20]
+
+print(i)
+# Output: (array([6, 7, 8, 9, 10]),)
+
+print(x[i])
+# Output: [16 17 18 19 20]
 ```
-x <- 10:20
-i <- which(x > 15)
-x
-##  [1] 10 11 12 13 14 15 16 17 18 19 20
+So here we looked the indicies of values being bigger than 15. These indicies we can than use to get the values which are bigger than  15. <br>
+You can also use a boolean array for indexing.
 
-i
-## [1]  7  8  9 10 11
+```python
+# Create a boolean array
+b = x > 15
 
-x[i]
-## [1] 16 17 18 19 20
-```
+print(b)
+# Output: [False False False False False False  True  True  True  True  True]
 
-Note, however, that you can also use a logical vector for indexing (values for which the index is TRUE are returned).
-
-```
-x <- 10:20
-b <- x > 15
-x
-##  [1] 10 11 12 13 14 15 16 17 18 19 20
-
-b
-##  [1] FALSE FALSE FALSE FALSE FALSE FALSE  TRUE  TRUE  TRUE  TRUE  TRUE
-
-x[b]
-## [1] 16 17 18 19 20
-```
-
-A very useful operator that allows you to ask whether a set of values is present in a vector is %in%.
-
-```
-x <- 10:20
-j <- c(7,9,11,13)
-j %in% x
-
-## [1] FALSE FALSE  TRUE  TRUE
-
-which(j %in% x)
-## [1] 3 4
-```
-Another handy similar function is match:
-
-```
-match(j, x)
-## [1] NA NA  2  4
-```
-telling us that the third value in j is equal to the second value in x and that the fourth value in ‘j’ is equal to the fourth value in x.
-
-match is asymmetric: match(j,x) is not the same as match(x,j).
-
-```
-match(x, j)
-##  [1] NA  3 NA  4 NA NA NA NA NA NA NA
+print(x[b])
+# Output: [16 17 18 19 20]
 ```
 
-This tells us that the second value in x is equal to the third value in ‘j’, etc.
+The np.isin function allows you to check whether each element of an array is in another array. It returns 'True' or 'False' for each element of the first array. With np.where you can than get the indicies which are 'True'
+
+```python
+j = np.array([7, 9, 11, 13])
+print(np.isin(j, x))
+# Output: [False False  True  True]
+
+print(np.where(np.isin(j, x)))
+# Output: (array([2, 3]),)
+```
 
 
 <!--

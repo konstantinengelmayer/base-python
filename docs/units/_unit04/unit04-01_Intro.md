@@ -15,7 +15,7 @@ At the end of this unit you should know how to
 * address and
 * change
 
-specific data in vectors, lists, matrices and data.frames.
+specific data in arrays, lists, matrices and data.frames.
 
 ## Comments?
 You can leave comments below if you have questions or remarks about any of the text or code in this unit.
