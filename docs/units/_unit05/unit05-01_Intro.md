@@ -14,8 +14,7 @@ At the end of this unit you should know
 * what a root directory is
 * how directory structures work
 * what the differences between relative and absolute paths are
-* what packages are
-* what information you can find an the session info window.
+* what information you can find in the session info window.
 
 ## Comments?
 You can leave comments below if you have questions or remarks about any of the text or code in this unit.
