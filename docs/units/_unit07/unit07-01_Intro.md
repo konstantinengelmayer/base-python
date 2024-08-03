@@ -1,5 +1,5 @@
 ---
-title: "Introduction to loops"
+title: "Introduction to Operations"
 header:
   image: /assets/images/unit_images/u07/header.png
   image_description: "loop"

@@ -4,3 +4,6 @@
 - Unit02_08 dataCamp exercise
 - Unit03_07 summary
 - Unit04_04 summary
+- Unit05_04 summary
+- Unit06_03 test and the end of page
+- Unit06_04 summary

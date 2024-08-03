@@ -10,83 +10,43 @@ header:
 
 <!--more-->
 
+## Importing csv data with python using pandas
+Reading or writing tabulated data into or from a data frame is a quite common task in data analysis. Based on the csv data provide is can be really easy or sometimes also a bit cumbersome. If the separator of your csv is `,`, the decimal separator is `.` and you have a header for each column you can normally use the `read_csv()` function with the path of you `.csv` without any additional parameters.
 
-## Importing data via buttons
+```python
+import pandas as pd
 
-The data import features can be accessed from the environment pane or from the tools menu. The importers are grouped into 3 categories: Text data, Excel data and statistical data. To access this feature, use the "Import Dataset" dropdown from the "Environment" pane:
-
-{% include figure image_path="/assets/images/unit_images/u06/602_data-import-via-envi.png" caption="Data import via environment. ©[Javier Luraschi](https://support.rstudio.com/hc/en-us/articles/218611977-Importing-Data-with-RStudio)" %}
-
-
-Or through the "File" menu, followed by the "Import Dataset" submenu:
-{% include figure image_path="/assets/images/unit_images/u06/602_data-import-via-file.png" caption="Data import via Filemenu. ©[Javier Luraschi](https://support.rstudio.com/hc/en-us/articles/218611977-Importing-Data-with-RStudio)" %}
-
-
-Importing `From Text (readr)` files allows you to import csv files and in general, character delimited files using the `readr package`. This Text importer provides support to:
-
-* Import from the file system or an url
-* Change column data types
-* Skip or include-only columns
-* Rename the data set
-* Skip the first n rows
-* Use the header row for column names
-* Trim spaces in names
-* Change the column delimiter
-* Encoding selection
-* Select quote, escape, comment and NA identifiers
-
-
-{% include figure image_path="/assets/images/unit_images/u06/602_data-import-rstudio-overview.gif" caption="Data import via environment. ©[Javier Luraschi](https://support.rstudio.com/hc/en-us/articles/218611977-Importing-Data-with-RStudio)" %}
-
-
-## Importing data via code
-Reading or writing tabulated data into or from a data frame is a quite common task in data analysis. The `read.table` or the `read.csv` functions for this.
-
-```r
-df <- read.csv(file.csv) # or read.csv2 -> selection depends on the delimiter and seperator
+# Reading the CSV file
+df = pd.read_csv('path/to/your/file.csv')
+```
+When ever one of these parameters are different than the default you need to change them manually. To see all available parameters of the function you can type `pd.read_csv?` So for European `.csv` files it often looks like this:
+```python
+df = pd.read_csv('path/to/your/file.csv', sep = ';', decimal = ',')
 ```
 
-```r
-df <- read.table(file.csv, header = FALSE, sep = “”,
-                 dec = “.”, skip = 0, ...)
+## Real World Example
 
-write.table(df, file = <file>, sep = “ “, dec = “.”, ...)
+This (example is taken from [here](https://www.regionalstatistik.de/genesis/online/){:target="_blank"}) . It contains data about the area of different landuse types. 
+
+
+```python
+import pandas as pd
+
+# Reading the CSV file
+df = pd.read_csv('/AI001_gebiet_flaeche.csv', skiprows=4, header=0, sep=';', decimal=',')
 ```
+#### Explanation of Parameters
+1. `filepath_or_buffer`: The path to the CSV file.
+2. `skiprows=4`: Skips the first four lines (useful if the first few lines contain metadata rather than data).
+3. `header=0`: Specifies that the first non-skipped row contains the header.
+4. `sep=';'`: Defines the column separator.
+5. `decimal=','`: Defines the decimal separator used in the dataset.
 
-## Reading data from csv files
+A quick way to check if everything is fine is to display the first few lines of the data file using the `head` method (without the 2, it will print 5 lines as a standard setting).
 
-Reading csv files is realized using the `read.table` function from R's utils library. The function will return a data frame which contains the information of the csv file (example taken from [here](https://www.regionalstatistik.de/genesis/online/){:target="_blank"}) .
-
-
-```r
-df <- read.table(paste0(envrmt$path_data_csv, "/AI001_gebiet_flaeche.csv"),
-                 skip = 4, header = TRUE, sep = ";", dec = ",")
-```
-
-As you can see, the `read.table` function gets several arguments (which is common for many functions). The first one gives the filename inclducing the path to the file.
-* `skip = 4` tells the function to skip the first four lines (which are plain text lines in this case and not tabulated values)
-* `header = TRUE` tells the function, that the csv file has a header line which is used by `read.table` to name the columns of the returning data frame
-* `sep = ";"` defines the separator of the individual columns in the data frame
-* `dec = ","` defines the decimal separator used in the dataset
-
-A note on the sequence of the arguments: the sequence of the arguments does
-not matter as long as you name them explicetly. If you do not use the argument
-identfier as it is the case for the first argument, the filename, in the example
-then the sequence matters. To get information on the default sequence and of
-course the general application of the each R function, type `?<function name>`
-(e.g. `?read.table`) in an R console.
-
-After you executing the `read.table` function above, the content of the csv file is
-stored into a two dimensional data frame called `df` in the example above.
-
-A quick way to check if everything is fine is to display the first few lines of
-the data file using the `head` function (without the 2, it will print 5 lines as a standard setting).
-
-```r
-head(df,2)
-```
-
-```
+```python
+print(df.head(2))
+## Output:
 ##      X X.1                  X.2
 ## 1 1996  DG          Deutschland
 ## 2 1996  01   Schleswig-Holstein
@@ -104,57 +64,15 @@ head(df,2)
 ## 2                               9,3
 ```
 
-## Writing data to csv files
-Writing data is as easy as reading it. Just use the `write.table` function.
-
-```r
-write.table(df, file = paste0(envrmt$path_data_tmp, "new.csv"),
-            sep = ",", dec = ".")
+## Writing Data to CSV Files
+Writing data to a CSV file is as straightforward as reading it. You can use the `to_csv` method from the pandas DataFrame.
+```python
+df.to_csv('path/to/your/output_file.csv', sep=',', decimal='.', index=False)
 ```
-As you can see, you can define any column or decimal separator.
-
-For more information have a look at e.g. the respective [data importing](http://www.statmethods.net/input/importingdata.html) and [data exporting](http://www.statmethods.net/input/exportingdata.html) site at Quick R, have a look into the package
-documentation or search the web.
-
-
-## Alternative data I/O using RDS
-Writing into CSV files is a good choice for data exchange into the non-R world. If you want to re-use the information stored in a data.frame or any other variable in R, writing the actual R object to a file connection will be of some benefit especially for more complex objects like model outputs or geo-datasets which do not represent the final information (because this would likely be shared to others using GeoTiff or other well recognized formats). To save an R object to a file connection, use the `saveRDS` function, to read it, use the `readRDS` function. The file extension **.rds** is generally used for that format.
-
-If you stay within R for reading and writing R objects from and to data files, you could also use the serialization of readRDS and saveRDS.
-
-```r
-saveRDS(df, file = paste0(envrmt$path_data_tmp, "new.rds"))
-
-# Read data to different variable
-df2 = readRDS(paste0(envrmt$path_data_tmp, "new.rds"))
-```
-
-
-
-```r
-saveRDS(df, file = <file>)
-
-df = readRDS(<file>)
-```
-
-See the respective help pages for more details.
-
-
-Reading or writing tabulated data into or from a data frame is a quite common task in data analysis. You could use the read.table function for this.
-```yaml
-df <- read.table(<file>, header = FALSE, sep = “”,
-                 dec = “.”, skip = 0, ...)
-
-write.table(df, file = <file>, sep = “ “, dec = “.”, ...)
-```
-
-Writing into CSV files is a good choice for data exchange into the non-R world. If you want to re-use the information stored in a data.frame or *any* other variable in R, writing the actual R object to a file connection will be of some benefit especially for more complex objects like model outputs or geo-datasets which do not represent the final information (because this would likely be shared to others using GeoTiff or other well recognized formats). To save an R object to a file connection, use the saveRDS function, to read it, use the readRDS function. The file extension "rds" is generally used for that format.
-```yaml
-saveRDS(df, file = <file>)
-
-df = readRDS(<file>)
-```
-See the respective help pages for more details.
+1. `path_or_buf`: The file path or object where the CSV data will be written.
+2. `sep=','`: Defines the column separator.
+3. `decimal='.'`: Defines the decimal separator.
+4. `index=False`: Omits the DataFrame index from the output file.
 
 
 ## Test what you've learned so far!

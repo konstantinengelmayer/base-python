@@ -44,25 +44,6 @@ They can be more complicated than that, and can contain thousands of lines, more
 
 That simplicity is a feature. CSV files are designed to be a way to easily export data and import it into other programs. The resulting data is human-readable and can be easily viewed with a text editor like Notepad or a spreadsheet program like Microsoft Excel.
 
-## Know your decimal seperator!
-As mentioned in [Unit 2.5 - Types of Data](https://geomoer.github.io/moer-base-r/unit02/unit02-05_types_of_data.html){:target="_blank"} it is essentially to know the decimal seperator.
-
-When you check `?read.table` you will probably find all the answer that you need.
-There are two issues with European csv files:
-
-* What does the `c` in csv stand for? For standard csv this is a `,`, for European csv this is a `;`, `sep=""` is the corresponding argument in `read.table`
-* What is the character for the decimal point? For standard csv this is a `.`, for European csv this is a `,`, `dec=""` is the corresponding argument in `read.table`
-
-To read standard csv use `read.csv`, to read European csv use `read.csv2`. These two functions are just wrappers to `read.table` that set the appropriate arguments.
-
-If your file does not follow either of these standards set the arguments manually with `sep` and `dec`.
-
-
-{% include figure image_path="/assets/images/unit_images/u06/602_csv.PNG" caption="Structure of an csv file." %}
-
-
-Let's move on to the next chapter: Working with csv ...
-
 
 <!--
 ## Further reading
