@@ -11,198 +11,112 @@ header:
 <!--more-->
 
 
-#### Sorting vectors or lists
-Vectors can be sorted using the `sort` function. If you want to sort a list,
-you have to access the actual elements since sort requires atomic vectors.
+#### Sorting lists
+Lists in Python can be sorted using the `sort()` method or the `sorted()` function.
 
-```
-x <- c(7,5,8,2,10)
-sort(x)
-
-[1]  2  5  7  8 10
-```
-
-```
-l <- list(x)
-sort(l[[1]])
-
-[1]  2  5  7  8 10
+The `sort()` method sorts the list in place.
+```python
+x = [7, 5, 8, 2, 10]
+x.sort()
+print(x)
+# Output:
+# [2, 5, 7, 8, 10]
 ```
 
+The sorted() function returns a new sorted list.
+```python
+x = [7, 5, 8, 2, 10]
+sorted_x = sorted(x)
+print(sorted_x)
+# Output:
+# [2, 5, 7, 8, 10]
+```
+
+#### Sorting arrays
+Arrays can be sorted using NumPy's `sort()` function.
+```python
+import numpy as np
+
+x = np.array([7, 5, 8, 2, 10])
+sorted_x = np.sort(x)
+print(sorted_x)
+# Output:
+# [ 2  5  7  8 10]
+```
 
 #### Sorting data frames
-The logic of sorting data frames is different from the `sort` function shown
-above. Instead of directly getting a sorted output, one has to get the
-permutation of the ordering i.e. a vector which gives the position of the
-elements in ascending or descending order. This is realized by the `order`
-function, which can also be applied to vectors or lists.
+Sorting DataFrames can be accomplished using the `sort_values()` method provided by the pandas library. This method is applied directly to the DataFrame and can sort by one or multiple columns. First we create our data frame.
+
+```python
+import pandas as pd
+
+# Sample data
+x = [2, 5, 2, 2, 10]
+y = ["Z", "D", "R", "A", "O"]
+z = [10, 40, 20, 30, 50]
+
+# Creating the DataFrame
+df = pd.DataFrame({'X': x, 'Y': y, 'Z': z})
+print(df)
+
+# Output:
+#     X  Y   Z
+# 0   2  Z  20
+# 1   5  D  40
+# 2   2  R  10
+# 3   2  A  30
+# 4  10  O  50
+```
+ Now we sort the data frame by the column x.
+```python
+df = df.sort_values(by='X')
+print(df)
+# Output:
+# X  Y   Z
+# 0   2  Z  20
+# 2   2  R  10
+# 3   2  A  30
+# 1   5  D  40
+# 4  10  O  50
 
 ```
-y <- c("Z", "D", "R", "A", "O")
-z <- c(10, 40, 20, 30, 50)
-
-df <- data.frame(X = x, Y = y, Z = z)
-df
-
-##    X Y  Z
-## 1  7 Z 10
-## 2  5 D 40
-## 3  8 R 20
-## 4  2 A 30
-## 5 10 O 50
+We can also sort the data frame by multiple columns.
+```python
+df = df.sort_values(by=['X', 'Z'])
+print(df)
+# Output:
+#     X  Y   Z
+# 0   2  Z  10
+# 2   2  R  20
+# 3   2  A  30
+# 1   5  D  40
+# 4  10  O  50
+```
+If we want to undo this, we can use the `sort_index()` method.
+```python
+df = df.sort_index()
+print(df)
+# Output:
+#     X  Y   Z
+# 0   2  Z  20
+# 1   5  D  40
+# 2   2  R  10
+# 3   2  A  30
+# 4  10  O  50
 ```
 
+The sorting works the same if you want to sort the data frame by a column containing character. Then the data frame is sorted alphabetically.
+```python
+df = df.sort_values(by='Y')
+print(df)
+# Output:
+#   X  Y   Z
+# 3   2  A  30
+# 1   5  D  40
+# 4  10  O  50
+# 2   2  R  20
+# 0   2  Z  10
 ```
-df[order(df$X),]  # order by column X
-
-##    X Y  Z
-## 4  2 A 30
-## 2  5 D 40
-## 1  7 Z 10
-## 3  8 R 20
-## 5 10 O 50
-```
-
-```
-df[order(df$Y),]  # order by column Y
-
-##    X Y  Z
-## 4  2 A 30
-## 2  5 D 40
-## 5 10 O 50
-## 3  8 R 20
-## 1  7 Z 10
-```
-
-```
-df[order(df$Y, df$Z),]  # order by column Y and Z
-
-##    X Y  Z
-## 4  2 A 30
-## 2  5 D 40
-## 5 10 O 50
-## 3  8 R 20
-## 1  7 Z 10
-```
-
-```
-# sorting would only be applicable for one row/column (i.e. one vector)
-sort(df[,2])
-
-[1] A D O R Z
-Levels: A D O R Z
-```
-
-```
-# for the vector and list example above, the followig would apply
-x[order(x)]
-
-[1]  2  5  7  8 10
-```
-
-```
-l[[1]][order(l[[1]])]
-
-[1]  2  5  7  8 10
-```
-Please note that the above examples are not the only way and that you might
-find other solutions for the same problem - this is something quite typical for
-very high level programming languages. Just to illustrate it, here comes the
-`with` function which evaluates an expression for the given data structure which
-requires that e. g. for a data frame it is placed at the position of the
-respective dimension inside the square brackets.
-
-```
-# sort a data frame by column X and Z
-df[with(df, order(X, Z)), ]
-
-##    X Y  Z
-## 4  2 A 30
-## 2  5 D 40
-## 1  7 Z 10
-## 3  8 R 20
-## 5 10 O 50
-```
-
-
-#### Sorting factors
-A quick note on sorting factors. Factors are categorial variables which can take
-on a value which is part of a predefined (and limited) set. Factors consist
-of two parts, the actual value at some position and the set of possible values
-called levels. This implies that two aspects of a factor can be ordered separately:
-the factor values which we see when printing the content of a data frame and
-the levels which we do not see when we print it (but which might affect the
-printig and plotting or some statistical operations).
-
-
-Lets have a look at the data frame df again:
-
-```
-df
-##    X Y  Z
-## 1  7 Z 10
-## 2  5 D 40
-## 3  8 R 20
-## 4  2 A 30
-## 5 10 O 50
-
-str(df)
-## 'data.frame':	5 obs. of  3 variables:
-##  $ X: num  7 5 8 2 10
-##  $ Y: Factor w/ 5 levels "A","D","O","R",..: 5 2 4 1 3
-##  $ Z: num  10 40 20 30 50
-
-levels(df$Y)
-[1] "A" "D" "O" "R" "Z"
-```
-
-```
-df$Y  # alternatively to levels(df$Y) to print both the values and the levels
-
-[1] Z D R A O
-Levels: A D O R Z
-```
-As you see, column Y is not sorted but looking at its structure we see that the
-column is of type Factor and using the `levels` function, we note that the
-factor levels are obviously ordered in an increasing order.
-
-Let's sort column Y in a decreasing order and have a look at the factor levels
-afterwards.
-
-```
-df <- df[order(df$Y, decreasing = TRUE),]
-levels(df$Y)
-
-## [1] "A" "D" "O" "R" "Z"
-```
-
-```
-df$Y
-
-[1] Z R O D A
-Levels: A D O R Z
-```
-Obviously, the value ordering in column Y has changed but not the ordering of
-its levels. To actually change the ordering of factor levels, we have to sort
-them explicitly.
-
-```
-df$Y <- factor(df$Y, levels(df$Y)[order(levels(df$Y), decreasing = TRUE)])
-levels(df$Y)
-
-[1] "Z" "R" "O" "D" "A"
-```
-
-```
-df$Y
-
-[1] Z R O D A
-Levels: Z R O D A
-```
-
-
-For more information have a look at e.g. the respective
-[sorting](http://www.statmethods.net/management/sorting.html) site at Quick R.
 
 
 <!--

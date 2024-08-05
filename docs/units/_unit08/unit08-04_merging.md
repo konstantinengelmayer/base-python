@@ -5,54 +5,68 @@ header:
   image_description: "noodle"
   caption: "Photo by [congerdesign](https://pixabay.com/de/users/congerdesign-509903/?utm_source=link-attribution&utm_medium=referral&utm_campaign=image&utm_content=1312384) [from Pixabay](https://pixabay.com/de/?utm_source=link-attribution&utm_medium=referral&utm_campaign=image&utm_content=1312384)"
 ---
-To merge data frames based on identifiers rather than the order of the rows, we utilize the merge() function. When merging two data frames, it's essential to designate the column that contains the identifiers for matching by using the by= argument. This is a crucial step; failing to specify the column can result in R handling the task in one of two ways:
-
-1. If there is a column with the same name in both data frames, R will automatically use that column for merging. However, it is not always certain that this column contains matching information across both data frames, which can lead to erroneous results.
-
-2. Without a specified matching column, R performs a Cartesian product of the data frames, repeating each row in the first data frame with every row in the second, as illustrated here:
+To merge data frames based on identifiers rather than the order of the rows, we utilize the `merge()` function in pandas. When merging two data frames, it's essential to designate the column that contains the identifiers for matching by using the `on` argument. This is a crucial step; if you don't set the column by which the data frames should be merged, python will take columns with the same name in both data frames automatically for merging.
 
 {% include figure image_path="/assets/images/unit_images/u08/Merge_LOTR2.png" %}
 
 
-In this example, we use the values of
-the column Z to merge the two data frames:
+To create the two data frames from the picture we run this code.
 
+
+```python
+import pandas as pd
+
+# DataFrame 1
+df1 = pd.DataFrame({
+    'id': ['Frodo', 'Aragorn', 'Legolas', 'Gimli', 'Gandalf'],
+    'race': ['Hobbit', 'Human', 'Elf', 'Dwarf', 'Maia']
+})
+print(df1)
+
+# DataFrame 2
+df2 = pd.DataFrame({
+    'name': ['Aragorn', 'Frodo', 'Gimli', 'Legolas'],
+    'Weapon': ['Sword', 'Ring', 'Axe', 'Bow']
+})
+print(df2)
+
+# Output:
+#         id    race
+# 0    Frodo  Hobbit
+# 1  Aragorn   Human
+# 2  Legolas     Elf
+# 3    Gimli   Dwarf
+# 4  Gandalf    Maia
+#       name Weapon
+# 0  Aragorn  Sword
+# 1    Frodo   Ring
+# 2    Gimli    Axe
+# 3  Legolas    Bow
 ```
-dfc <- merge(df1, df2, by = "Z")
-dfc
 
-##   Z X.x Y.x X.y Y.y
-## 1 A   1 1.4 100  14
-## 2 B   2 2.5 500  55
-## 3 C   3 3.6 200  25
-## 4 D   4 4.0 400  40
-## 5 E   5 5.5 300  36
+
+Since the column names in both data frames are different, we need to either rename one of the columns to match the other or use the `left_on` and `right_on` parameters in the merge function to specify the columns to merge on. The parameter `how=inner` makes sure to only include rows which have a matching partner in the other data frame.
+
+```python
+# Merge DataFrames
+merged_df_on = pd.merge(df1, df2, left_on='id', right_on='name', how='inner')
+
+# or
+
+# Rename column in df1
+df1.rename(columns={'id': 'name'}, inplace=True)
+# Merge DataFrames
+merged_df_rename = pd.merge(df1, df2, on='name', how='inner')
+
+# Output:
+#      name    race Weapon
+# 0    Frodo  Hobbit   Ring
+# 1  Aragorn   Human  Sword
+# 2  Legolas     Elf    Bow
+# 3    Gimli   Dwarf    Axe
 ```
-Since both data frames have identical column names, X and Y is added to the
-column names in the resulting data frame to indicate if the column is from the
-first (i.e. X) or second (i.e. Y) data frame. You can easily rename the columns
-using the `colnames` function.
 
-If the columns which should be used for mergin have different names, no problem:
-just supply the column names separately for the first (i.e. X) and second (i.e. Y)
-data frame:
 
-```
-colnames(df2) <- c("H", "I", "J")
-dfc <- merge(df1, df2, by.x = "Z", by.y = "J")
-dfc
-
-##   Z X   Y   H  I
-## 1 A 1 1.4 100 14
-## 2 B 2 2.5 500 55
-## 3 C 3 3.6 200 25
-## 4 D 4 4.0 400 40
-## 5 E 5 5.5 300 36
-```
-Since not only the names of the columns used for merging but all column names are
-different, no X or Y is added in the output column names.
-
-Be cautious: by default, only the identifiers present in both data frames are retained in the merged data frame. You can modify this behavior by setting all=TRUE, which includes all identifiers from both data frames, not just those that appear in both. If you wish to keep all records from the first data frame regardless of a match in the second, set all.x=TRUE. Conversely, use all.y=TRUE to preserve all records from the second data frame when they don't have a match in the first. Tip: The techniques you learned in Unit 04 can be useful in identifying these missing values 
 
 {% include figure image_path="/assets/images/unit_images/u08/Merge_LOTR1.png" %}
 

@@ -10,3 +10,7 @@
 - Unit07_04 test what you learned so far
 - Unit07_05 animation of the plot process (1 and 2), What you have learned so far
 - Unit07_06 what you have learned so far
+- Unit07_07 summary
+- Unit08_04 figures and test what you've learned so far
+- Unit08_05 summary
+- Unit08 what to do with string and aggregation?

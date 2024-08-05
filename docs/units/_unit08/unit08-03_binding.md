@@ -11,91 +11,64 @@ header:
 
 When thinking about combining two data frames one has to distinguish between
 merging them by the values given in a specific column or consecutively putting
-them together just rows after rows.
+them together just rows after rows. Here will bind these data frames together by row and by column
 
 For the following examples, we will use these two data frames.
 
+```python
+import pandas as pd
+
+# DataFrame 1
+x1 = [1, 2, 3, 4, 5]
+y1 = [1.4, 2.5, 3.6, 4.0, 5.5]
+z1 = ["A", "B", "C", "D", "E"]
+
+df1 = pd.DataFrame({'X': x1, 'Y': y1, 'Z': z1})
+
+# DataFrame 2
+y2 = [14, 25, 36, 40, 55]
+x2 = [100, 200, 300, 400, 500]
+z2 = ["A", "C", "E", "D", "B"]
+
+df2 = pd.DataFrame({'X': x2, 'Y': y2, 'Z': z2})
 ```
-x <- c(1, 2, 3, 4, 5)
-y <- c(1.4, 2.5, 3.6, 4.0, 5.5)
-z <- c("A", "B", "C", "D", "E")
+To concatenate two DataFrames row-wise, we use the `concat()` function provided that both DataFrames have the same column names and the same number of columns.
 
-df1 <- data.frame(X = x, Y = y, Z = z)
-df1
-
-##   X   Y Z
-## 1 1 1.4 A
-## 2 2 2.5 B
-## 3 3 3.6 C
-## 4 4 4.0 D
-## 5 5 5.5 E
-```
-
-```
-y <- c(14, 25, 36, 40, 55)
-x <- c(100, 200, 300, 400, 500)
-z <- c("A", "C", "E", "D", "B")
-df2 <- data.frame(X = x, Y = y, Z = z)
-df2
-
-##     X  Y Z
-## 1 100 14 A
-## 2 200 25 C
-## 3 300 36 E
-## 4 400 40 D
-## 5 500 55 B
-```
-
-To combine two data frames, use the `rbind` function provided that both
-data frames have the same column names and the same number of columns.
-
-```
-dfr <- rbind(df1, df2)
-dfr
-
-##      X    Y Z
-## 1    1  1.4 A
-## 2    2  2.5 B
-## 3    3  3.6 C
-## 4    4  4.0 D
-## 5    5  5.5 E
-## 6  100 14.0 A
-## 7  200 25.0 C
-## 8  300 36.0 E
-## 9  400 40.0 D
-## 10 500 55.0 B
+```python
+# Concatenate row-wise
+dfr = pd.concat([df1, df2], ignore_index=True)
+print(dfr)
+# Output:
+#      X     Y  Z
+# 0    1   1.4  A
+# 1    2   2.5  B
+# 2    3   3.6  C
+# 3    4   4.0  D
+# 4    5   5.5  E
+# 5  100  14.0  A
+# 6  200  25.0  C
+# 7  300  36.0  E
+# 8  400  40.0  D
+# 9  500  55.0  B
 ```
 
 Note, that it is not necessary that the columns are in the same order since the
-concatenation is done by the column names, not the column sequence:
+concatenation is done by the column names, not the column sequence.
 
-```
-df3 <- df2[,c(1,3,2)]
-df3
+When you want to bind column column-wise you can also use the `concat()` function. Here you need to set the `axis` parameter to 1.
 
-##     X Z  Y
-## 1 100 A 14
-## 2 200 C 25
-## 3 300 E 36
-## 4 400 D 40
-## 5 500 B 55
-```
+```python
+# Bind the DataFrames by columns
+dfc = pd.concat([df1, df2], axis=1)
+print(dfc)
 
-```
-dfr <- rbind(df1, df3)
-dfr
-
-##      X    Y Z
-## 1    1  1.4 A
-## 2    2  2.5 B
-## 3    3  3.6 C
-## 4    4  4.0 D
-## 5    5  5.5 E
-## 6  100 14.0 A
-## 7  200 25.0 C
-## 8  300 36.0 E
-## 9  400 40.0 D
-## 10 500 55.0 B
+# Output:
+#    X    Y  Z    X   Y  Z
+# 0  1  1.4  A  100  14  A
+# 1  2  2.5  B  200  25  C
+# 2  3  3.6  C  300  36  E
+# 3  4  4.0  D  400  40  D
+# 4  5  5.5  E  500  55  B
 ```
 
 <!--
