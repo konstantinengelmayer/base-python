@@ -14,34 +14,19 @@ Decision structures are like junctions in the analysis workflow and decide which
 If-then-else decisions are useful if your computation needs different workflows for different variable values.
 ```
 # Pseudocode
-if("<some logical (and boolean) expression>"){
-    "<do something>"
-} else {
-    "<do something else>"
-}
+if <some logical (and boolean) expression>:
+    # do something
+else:
+    # do something else
 ```
 
 ## Loops
-Except for the lapply-loop (representative for R's entire *apply* family), the following loops exist in all programming languages.
-
 ### For-loop
 Useful if your computation needs the same sequential workflow for different variables or subsets.
 ```
 # Pseudocode
-for(<iteration variable> in <control vector>){
-    <do something using the iteration variable>
-}
-```
-
-### Lapply-loop
-The *apply* family of loops is special to R. One of the most used loops of this family is `lapply`. It is largely compareable to a for-loop but calls a function for each iteration and returns a list of the function's results. Hence, it is useful if your computation needs the same sequential workflow for different variables or subsets *and* you want the results returned in a list.
-
-```
-# Pseudocode
-lapply(<control vector>, function(<iteration variable>){
-    <do something using the iteration variable>
-    return(<result>)
-})
+for <iteration variable> in <control vector>:
+    # do something using the iteration variable
 ```
 
 ### While-loop
@@ -49,9 +34,8 @@ Useful if your computation needs the same sequential workflow for a variable or 
 
 ```
 # Pseudocode
-while("<some logical expression with iteration variable>"){
-    <do something using iteration variable and update it>
-}
+while <some logical expression with iteration variable>:
+    # do something using iteration variable and update it
 ```
 ------
 
@@ -68,3 +52,11 @@ Let’s go through a few examples of each:
 * Use a while-loop for reading a file into a variable.
 * Use a while-loop when asking for user input.
 * Use a while-loop when the increment value is nonstandard.
+
+## Importance of Indentation in Python
+Indentation is crucial in Python because it determines the structure and flow of the code. Unlike many other programming languages that use braces or keywords to define code blocks, Python uses indentation to group statements.
+
+How Indentation Works:
+1. Each level of indentation should be consistent (typically 4 spaces).
+2. All statements within the same block should be indented to the same level (e.g things that should happen if and if-statement is True).
+3. The end of the indentation signifies the end of the code block.

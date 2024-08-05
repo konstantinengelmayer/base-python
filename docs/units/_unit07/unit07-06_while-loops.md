@@ -10,66 +10,50 @@ As for loops, while loops are repeating structures which enable the execution of
 
 While loops are executed until a termination condition is reached. In the following example, this condition is given by `a > b`:
 
-```r
-a <- 7
-b <- 10
-while(a <= b){
-  print(a)
-  a <- a + 1
-}
+```python
+a = 7
+b = 10
+while a <= b:
+    print(a)
+    a += 1
 
-## [1] 7
-## [1] 8
-## [1] 9
-## [1] 10
+# Output:
+# 7
+# 8
+# 9
+# 10
 ```
 
 Obviously, this condition is executed 4 times (i.e. a = 7, 8, 9, 10). After that `a + 1` gives 11 which is larger than b and the termination condition is reached.
 As for any other loop, nested loops are also possible.
 
-```r
-a <- 7
-b <- 10
-c <- 10
-while(a <= b){
-  print(paste0("Outer loop value of a: ", a))
-  while(c > a){
-    print(paste0("   Inner loop value of c: ", c))
-    c <- c - 1
-  }
-  c <- 10
-  a <- a + 1
-
-}
-
-## [1] "Outer loop value of a: 7"
-## [1] "   Inner loop value of c: 10"
-## [1] "   Inner loop value of c: 9"
-## [1] "   Inner loop value of c: 8"
-## [1] "Outer loop value of a: 8"
-## [1] "   Inner loop value of c: 10"
-## [1] "   Inner loop value of c: 9"
-## [1] "Outer loop value of a: 9"
-## [1] "   Inner loop value of c: 10"
-## [1] "Outer loop value of a: 10"
+```python
+a = 7
+b = 10
+c = 10
+while a <= b:
+    print(f"Outer loop value of a: {a}")
+    while c > a:
+        print(f"   Inner loop value of c: {c}")
+        c -= 1
+    c = 10
+    a += 1
+# Output:
+# Outer loop value of a: 7
+#    Inner loop value of c: 10
+#    Inner loop value of c: 9
+#    Inner loop value of c: 8
+# Outer loop value of a: 8
+#    Inner loop value of c: 10
+#    Inner loop value of c: 9
+# Outer loop value of a: 9
+#    Inner loop value of c: 10
+# Outer loop value of a: 10
 ```
 
 Variable `c` has to be reseted to its initial value every time the inner loop is completed. Otherwise it would not start a second time since the termination condition is already reached. Of course this behavior can also be useful for a variety of problems.
 
 ----
-
-One couls also use the *repeat* statement, which creates  a loop that repeats an action or a set of actions indefinitely until a certain condition is met. The loop continues executing until an explicit break statement is encountered within the loop. Here's how it works:
-
-```r
-repeat {
-  # Code to be executed in each iteration
-  
-  if (condition) {
-    break  # Terminate the loop if the condition is met
-  }
-}
-
-```
 
 
 ## Test what you've learned so far!
