@@ -21,28 +21,12 @@ This tutorial will guide you through downloading Python, creating a virtual envi
 2. Download the appropriate installer for your operating system (Windows, macOS, or Linux).
 3. Run the installer and follow the installation instructions.
 
-## Step 2: Create a Virtual Environment with Miniconda
-
-1. Open your miniconda powershell.
-2. Create a new virtual environment by running the following command:
-   ```sh
-   conda create -n myenv python=3.9
-   ```
-   Replace `myenv` with the name you want for your environment and `3.9` with the desired Python version.
-3. Activate you new virtual environment calling its name and download necessary libraries for the course:
-   ```sh
-   conda activate myenv
-   conda install numpy
-   conda install pandas
-  ```
-{% include figure image_path="/assets/images/unit_images/u01/miniConda.PNG" %}
-
-## Step 3: Download Visual Studio Code
+## Step 2: Download Visual Studio Code
 1. Go to the Visual Studio Code download page.
 2. Download the appropriate installer for your operating system.
 3. Run the installer and follow the installation instructions.
 
-## Step 4: Install Extensions in Visual Studio Code
+## Step 3: Install Extensions in Visual Studio Code
 1. Open Visual Studio Code.
 2. Install the Python extension:
 3. Go to the Extensions view by clicking on the Extensions icon in the Activity Bar on the side of the window or pressing Ctrl+Shift+X. Search for "Python" and install the extension published by Microsoft.

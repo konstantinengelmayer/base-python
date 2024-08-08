@@ -134,7 +134,7 @@ defaults:
       path: ""
       type: unit02
     values:
-      category: "02 Types of Data"
+      category: "02 Basic Data Types and Variables"
       tags: "Unit 02"
       layout: single
       sidebar:

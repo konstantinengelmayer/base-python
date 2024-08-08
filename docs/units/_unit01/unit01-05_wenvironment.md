@@ -13,7 +13,7 @@ header:
 
 ---
 
-# What does workspace mean?**
+# What is a workspace?**
 > “A workspace is (often) a file or directory that allows a user to gather various source code files and resources and work with them as a cohesive unit. Often these files and resources represent the complete state of an integrated development environment (IDE) at a given time, a snapshot. Workspaces are very helpful in cases of complex projects when maintenance can be challenging.” — [Wikipedia](https://en.wikipedia.org/wiki/Workspace)
 
 Let's create a directory for this course if you don't already have one. Create a folder somewhere on your computer with a logical name (e.g., base_python_course).

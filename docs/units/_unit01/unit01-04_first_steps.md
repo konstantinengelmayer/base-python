@@ -1,5 +1,5 @@
 ---
-title: "First Steps in R"
+title: "First Steps in Python"
 toc: TRUE
 toc_float: TRUE
 header:
@@ -13,113 +13,29 @@ header:
 
 ## #Hashtag and Run!
 
-R treats the hashtag character, **#**, in a special way. It will not compile anything that follows a # on a line. This makes hashtags very useful for adding comments and annotations to your code. You will be able to read the comments, but your computer will pass over them.
+Let's open our first Jupyter Notebook. Press `Ctrl+Shift+P` to open the command palette and search for `>Create: New Jupyter Notebook`. Here VS Code automatically creates the first code block for you. Try to enter this line of code:
+```python
+print('Welcome to Python)
+```
+To run the block of code you can press `Shift+Enter`. Now VS Code will ask you for your Python interpreter. Here you have to chose your miniconda virtual environment. Then you can run your code. 
 
-```r
+You can also comment your code to make it easier to understand for other and yourself. Python treats the hashtag character, **#**, in a special way. It will not compile anything that follows a # on a line. This makes hashtags very useful for adding comments and annotations to your code. You will be able to read the comments, but your computer will pass over them.
+
+```python
 # This is a comment. Comments are very helpful
 # when you want to describe what's going on in your code.
 # Use them often!
 This is not a comment anymore. Be careful.
 
-hello <- "Welcome to R" #the variable "hello" is storing the information "Welcome to R"
+print("Welcome to R")
 ```
 
-To run a chunk, you can hit the "Run" arrow to the right in the first Window (following picture, red box), or put your cursor inside the chunk and then hit `CTRL + ENTER` on Windows/Linux or `CMD + ENTER` on a Mac.
+{% include figure image_path="/assets/images/unit_images/u01/VS_code_first_steps.PNG" caption="VS Code Overview" %}
 
-{% include figure image_path="/assets/images/unit_images/u01/gui_rstudio_exp2.png" caption="Hit the Run-Button." %}
+As you see, in VS code you have many button to click on. Let's o over the most important ones. The `+Code` button create a new code chunk where you can insert new code. The `+Markdown` button create a markdown chunk. Markdown is a lightweight markup language used to format text with simple syntax for styling, such as headers, lists, and emphasis. With markdown you can explain and structure you code in more detail. This is why Jupyter Notebook is such a convenient tool, because you can run code and explain in really detailed in one file combined.
 
-The code and the output of the code will print below the chunk in the second Window (Console).
-It looks like this:
-```r
-> hello <- "Welcome to R"
-> hello
-[1] "Welcome to R"
->
-```
-Here, you’ll also see on the left hand side the “>” symbol which means that R is ready to receive a new command. If there's a “+” is visible instead, this means that the command has not yet been completed, e.g. a parenthesis has not been closed.
+In Markdown, headers are created using the `#` symbol. The number of # symbols indicates the level of the header (e.g., `#` for level 1, `##` for level 2). Normal text is simply written without any special formatting symbols.
 
-## Creating scalar objects and simple arithmetic operations
+{% include figure image_path="/assets/images/unit_images/u01/VS_code_markdown.PNG" caption="VS Code Markdown Cell" %}
 
-The basic arithmetic operations are addition, subtraction, multiplication and division. Further, more complex operations include square roots, exponentiation and some other. To  control the order of operations, use parentheses "()". Note, that square brackets "[]" cannot be used, because they are reserved for subsetting or indexing data structures like vectors, lists, data frames, and matrices, as you will see in Unit 04.
-
-Examples of mathematic operations in R. This is using R like a calculator.
-
-
-| Operator  | Description                          | Example   |
-|-----------|--------------------------------------|-----------|
-| **Arithmetic Operators** ||
-| +         | Addition                             | `x + y` |
-| -         | Subtraction                          | `x - y` |
-| *         | Multiplication                       | `x * y` |
-| /         | Division                             | `x / y` |
-| ^ or **   | Exponentiation                       |  `x^y`  |
-| x %% y    | Modulus (x mod y)                    | `x %% y` |
-| %/%       | Integer division                     | `x %/% y`|
-| **Math Functions** ||
-| log()     | Logarithms, by default natural       | `log(x)` |
-| exp()     | Exponential function                 | `exp(x)` |
-| sqrt()    | Square-root                          | `sqrt(x)`|
-| ^(1/n)    | nth roots                            | `x^(1/n)`|
-| abs()     | Absolute value                       | `abs(x)` |
-| sin()     | Sine                                 | `sin(x)` |
-| cos()     | Cosinus                              | `cos(x)` |
-| tan()     | Tangent                              | `tan(x)` |
-
-This is what it looks like in R:
-
-```
-> 1 + 2
-[1] 3
-```
-```
-> 2 - 1
-[1] 1
-```
-```
-> 2 * 3
-[1] 6
-```
-```
-> 2 / 3
-[1] 0,6666666666666667‬
-```
-```
-> 2 ^ 3
-[1] 8
-```
-```
-> cos(2 ^ (3+2))
-[1] 0.8342234
-```
-
-
-That [1] next to your result is a reminder that this line begins with the first value in your result. Some commands return more than one value, and their results may fill up multiple lines.
-
-
-
-### Assigning values to objects
-
-And now you have reached the core concept of every object-based programming language: assigning objects. This fundamental operation is remarkably straightforward. You type in the name of the object-to-be, an assignment operator, and the content you'd like to assign. In R, there are two assignment operators: <- and =. The <- operator is the more common and recommended way to assign objects in R. It's considered good practice because it makes your code more readable and is less likely to be confused with the equality operator ==, which is used for comparison.
-
-
-```
-> # Assign values to objects
-> a <- 1+2 # addition/allocation, calculation is stored in object "a"
-> a <- print the result
-[1] 3
-```
-
-```
-> # adding another object
-> b <- 2-1
-> b
-[1] 1
->
-> a + b # apply operators to objects
-[1] 4
->
-> c <- (a + b) * 2 # brackets
-> c
-[1] 8
-```
-And that is how information is stored in objects in an object-oriented programming language.
+When clicking the little checkmark marked with the orange arrow the markdown code will be change to text format.

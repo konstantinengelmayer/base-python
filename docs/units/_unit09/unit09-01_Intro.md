@@ -6,17 +6,17 @@ header:
   caption: "Photo by [Gerd Altmann](https://pixabay.com/de/users/geralt-9301/?utm_source=link-attribution&utm_medium=referral&utm_campaign=image&utm_content=4705451) [from Pixabay](https://pixabay.com/)"
 ---
 
-You will remember from **Unit 02** that each type of data requires its own specific techniques for description and visualisation.
+You will remember from **Unit 02** that each type of data requires its own specific techniques for description and visualization.
 
 **Qualitative data** includes non-numeric categories or labels.
-Important information is Frequency Counts. This can be effectively assessed using the __table()__ function in R (see section **“barplot”** for more details).
+Important information is Frequency Counts. This can be effectively assessed using the __value_counts()__ method in python(see section **“barplot”** for more details).
 Recommended Plots are
 - Bar Plots: Ideal for displaying the frequency of different categories.
 - Pie Charts: Useful for showing the proportion of each category.
 - Dot Plots: Effective for comparing the frequency or count of categories, particularly when dealing with a large number of categories where a bar plot might become cluttered.
 
 **Quantitative data** is numerical and permits a wider array of statistical analyses, such as mean (the average value), the median (the middle value in ordered data) and quantiles (indicating data spread).
-The __summary()__ function in R provides a quick statistical summary of these metrics.
+The __describe()__ method in Python provides a quick statistical summary of these metrics.
 
 Recommended Plots are:
 - Histograms: Excellent for the distribution of a single numerical variable.

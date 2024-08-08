@@ -12,58 +12,55 @@ header:
 <!--more-->
 
 
-The use of R offers many advantages not only in the analysis of data, R is also a useful tool for creating scientific graphs. R makes it possible
-* to produce high quality graphs that are also suitable for professional printing.
-* to create graphics completely in R syntax and thus make them reproducible.
-reproducible.
-* to flexibly combine different types of graphics or develop your own forms of presentation.
-* to easily create uniformly designed graphics.
+Using Python with libraries like `matplotlib` offers many advantages not only in data analysis but also in creating scientific graphs. Python makes it possible:
+- to produce high-quality graphs that are also suitable for professional printing.
+- to create graphics completely in Python syntax and thus make them reproducible.
+- to flexibly combine different types of graphics or develop your own forms of presentation.
+- to easily create uniformly designed graphics.
 
 Do not wait until the very final analysis stage to produce some publication quality graphics but produce fast (not necessarily nice) visualizations all the way through your data analysis. Otherwise you will not utilize the best neural network infrastructure you have available: your brain and it's ability to identify patterns.
 
 ## Basic plots in R
 
-`plot(x,y)` is the universal function for generating scatter plots and line plots from the vectors x and y. plot can be optionally adjusted with various parameters:
+The `plot()` function in `matplotlib` is the universal function for generating scatter plots and line plots from data arrays. The plot can be optionally adjusted with various parameters:
 
-| Parameter | Description | Example |
-|---------|-------|---------|
-| type | sets the diagram type: <br> "l" -> lines <br> "p" -> dots <br> "b" -> both points and lines <br> "c"-> empty points joined by lines <br> "h" -> bars, histogram-like vertical lines <br> "s" -> step diagram <br> "n" -> no representation, does not produce any points or lines <br>        | type="b" |
-| main | name of title              | main="Population growth (annual %)" |
-| col | set colour for lines, dots, bars etc. <br> show available colour words: colours()  | col="blue" <br> col="#112233" (RGB value) <br> col="#11223344" (RGB and transparency value) |
-| sub | subtitle, caption           | sub="Figure 1" |
-| xlab | labelling of the x-axis                | xlab="Years 2000 to 2020" |
-| ylab | labelling of the y-axis                | ylab="Population Growth in %" |
-| pch | The graphic symbol used to represent data points. Either a character as a string or a number representing the following characters; <br> <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Pointmarks.png"> | pch=1 |
-| lty | Stroke type of lines  <br>  <img src="https://upload.wikimedia.org/wikipedia/commons/8/89/Rlines.png">              | lty=1 |
-| lwd | Line width | lwd=3 |
-| cex | Symbol size | cex=2 |
-| xlim | Sets start and end values of the X-axis scale | xlim=c(0,20) |
-| ylim | Sets start and end values of the y-axis scale | ylim=c(100,160) |
-| bty | Outline of the complete character area. Options are: "n", "o", "c", "l", "7" | bty="n" |
-| xaxt | Labelling of the X-axis scale OFF | xaxt="n" |
-| yaxt | Labelling of the Y-axis scale OFF | yaxt="n" |
-| font | Selection of the font format, 1=plain, 2=bold, 3=italic, 5=Greek symbols | font=5 |
-|  | "Pointcharacters as used in GNU R" by Marc Schwenzer on Wikimedia <br> "Line-Styles of GNU R" by Europol on Wikimedia | |
+| Parameter   | Description | Example |
+|-------------|-------------|---------|
+| linestyle   | sets the line style: <br> "-" -> solid line <br> "--" -> dashed line <br> "-." -> dash-dot line <br> ":" -> dotted line <br> " " -> no line | linestyle="--" |
+| marker      | sets the marker style: <br> "o" -> circle <br> "s" -> square <br> "D" -> diamond <br> "^" -> triangle_up <br> " " -> no marker | marker="o" |
+| color       | sets the color of lines, dots, bars, etc. | color="blue" <br> color="#112233" (RGB value) |
+| title       | sets the main title of the plot | title="Population growth (annual %)" |
+| xlabel      | sets the label of the x-axis | xlabel="Years 2000 to 2020" |
+| ylabel      | sets the label of the y-axis | ylabel="Population Growth in %" |
+| linewidth   | sets the line width | linewidth=2 |
+| markersize  | sets the size of the markers | markersize=5 |
+| xlim        | sets the start and end values of the X-axis scale | xlim=(0, 20) |
+| ylim        | sets the start and end values of the y-axis scale | ylim=(100, 160) |
+
 
 
 ## Let's have some fun
 The following is an introduction for producing simple graphs.
 
-Define 2 vectors for two different datasets:
-```
-sport_cars <- c(1, 2, 4, 2, 6, 7, 10)
-family_cars <- c(3, 6, 6, 8, 6, 5, 2)
+Define 2 lists for two different datasets:
+```python
+sport_cars = [1, 2, 4, 2, 6, 7, 10]
+family_cars = [3, 6, 6, 8, 6, 5, 2]
 ```
 
 Then calculate the range from 0 to max value of sport cars and family cars:
-```
-max_range <- range(0, sport_cars, family_cars)
+```python
+max_range = [0, max(max(sport_cars), max(family_cars))]
 ```
 
 We graph the cars using the y axis that ranges from 0 to max value in sports or family cars and turning off axes and annotations (axis labels) so we can specify them ourself.
-```
-plot(sport_cars, type="o", col="blue", ylim=max_range,
-     axes=FALSE, ann=FALSE)
+```python
+import matplotlib.pyplot as plt
+
+plt.plot(sport_cars, 'o-', color='blue', ylim=max_range, label='Sport', markersize=5)
+plt.xticks(ticks=range(len(sport_cars)), labels=["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"])
+plt.yticks(ticks=range(0, max_range[1]+1, 4))
+plt.box(on=True)
 ```
 
 {% include figure image_path="/assets/data/data/plot1.png" caption="Print of Code chunk above" %}
