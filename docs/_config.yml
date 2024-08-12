@@ -27,7 +27,7 @@ baseurl: "/base-python"
 
 
 ##### Title ###################################################################
-title: Base R
+title: Base Python
 name: &name "Lab of Environmental Informatics" # &name is a YAML anchor which can be *referenced later
 email: dirk.zeuss@uni-marburg.de
 description: >- # this means to ignore newlines until next item
@@ -144,7 +144,7 @@ defaults:
       path: ""
       type: unit03
     values:
-      category: "03 Types of Objects"
+      category: "03 Simple Operators"
       tags: "Unit 03"
       layout: single
       sidebar:
@@ -154,7 +154,7 @@ defaults:
       path: ""
       type: unit04
     values:
-      category: "04 Indexing"
+      category: "04 Control Structures"
       tags: "Unit 04"
       layout: single
       sidebar:
@@ -164,7 +164,7 @@ defaults:
       path: ""
       type: unit05
     values:
-      category: "05 Work Environment"
+      category: "05 Types of Objects"
       tags: "Unit 05"
       layout: single
       sidebar:
@@ -174,7 +174,7 @@ defaults:
       path: ""
       type: unit06
     values:
-      category: "06 In- and Output of Data"
+      category: "06 Indexing"
       tags: "Unit 06"
       layout: single
       sidebar:
@@ -184,7 +184,7 @@ defaults:
       path: ""
       type: unit07
     values:
-      category: "07 Operations"
+      category: "07 Loops"
       tags: "Unit 07"
       layout: single
       sidebar:
@@ -194,7 +194,7 @@ defaults:
       path: ""
       type: unit08
     values:
-      category: "08 Sorting and Combining Data"
+      category: "08 Working with Files"
       tags: "Unit 08"
       layout: single
       sidebar:

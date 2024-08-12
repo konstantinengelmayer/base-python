@@ -1,5 +1,5 @@
 ---
-title: Decisions and Loops
+title: Loops
 toc: TRUE
 toc_float: TRUE
 header:
@@ -7,20 +7,14 @@ header:
   image_description: "loop"
   caption: "Photo by [Christopher Kuszajewski](https://pixabay.com/de/users/kuszapro-369349/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=583537) [from Pixabay](https://pixabay.com/de/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=583537)"
 ---
+In programming, loops are fundamental constructs that allow you to repeat a block of code multiple times without having to write it out repeatedly. They are essential for automating repetitive tasks, iterating over data structures like lists or arrays, and performing operations until a specific condition is met.
 
-Decision structures are like junctions in the analysis workflow and decide which way to go during runtime. Loops are the workhorses for repeating the same computations on different subsets of the data.
+Loops save time, reduce errors, and make your code more efficient and readable. In Python, there are two primary types of loops: the for loop and the while loop.
 
-## If-then-else
-If-then-else decisions are useful if your computation needs different workflows for different variable values.
-```
-# Pseudocode
-if <some logical (and boolean) expression>:
-    # do something
-else:
-    # do something else
-```
+## Why Use Loops?
+- Efficiency: Loops reduce the need for redundant code, allowing you to perform repetitive tasks more efficiently.
+- Automation: They automate tasks by repeating actions until a certain condition is met.
 
-## Loops
 ### For-loop
 Useful if your computation needs the same sequential workflow for different variables or subsets.
 ```

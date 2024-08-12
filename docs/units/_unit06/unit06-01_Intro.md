@@ -1,20 +1,21 @@
 ---
-title: "Introduction to CSV"
+title: Introduction
 header:
-  image: /assets/images/unit_images/u06/header.png
-  image_description: "neon data"
-  caption: "Photo by [Free-Photos](https://pixabay.com/photos/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=336373) [Pixabay](https://pixabay.com/de/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=336373)"
+  image: /assets/images/unit_images/u04/header.png
+  image_description: "index"
+  caption: "Photo by [Maksym Kaharlytskyi](https://unsplash.com/@qwitka?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText) from [Unsplash](https://unsplash.com/?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText)"
 ---
-*You will learn what a csv file is and how to use it in a dataframe.*
+*You will learn how to access the indices.*
 
 <!--more-->
+In the previous unit, you got an idea of how to address some elements of an object. Let's take a closer look now.
+At the end of this unit you should know how to
 
-At the end of this unit you should know
+* find
+* address and
+* change
 
-* what tabulated data is,
-* how to import data into your environment
-* about the crux of decimal separators,
-* how to work with csv-files.
+specific data in arrays, lists, matrices and data.frames.
 
 ## Comments?
 You can leave comments below if you have questions or remarks about any of the text or code in this unit.
@@ -22,15 +23,11 @@ Please copy the corresponding line into your comment to make it easier to answer
 
 <script src="https://utteranc.es/client.js"
         repo="GeoMOER/moer-base-r"
-        issue-term="moer-base-r_unit06"
+        issue-term="moer-base-r_unit04"
         theme="github-light"
         crossorigin="anonymous"
         async>
 </script>
 
 
-<!--
-## Further reading
-
-add some day
--->
+<!--more-->

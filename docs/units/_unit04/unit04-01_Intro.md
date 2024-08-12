@@ -1,21 +1,20 @@
 ---
-title: Introduction
+title: "Introduction to Control Structures"
 header:
-  image: /assets/images/unit_images/u04/header.png
-  image_description: "index"
-  caption: "Photo by [Maksym Kaharlytskyi](https://unsplash.com/@qwitka?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText) from [Unsplash](https://unsplash.com/?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText)"
+  image: /assets/images/unit_images/u07/header.png
+  image_description: "loop"
+  caption: "Photo by [Christopher Kuszajewski](https://pixabay.com/de/users/kuszapro-369349/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=583537) [from Pixabay](https://pixabay.com/de/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=583537)"
 ---
-*You will learn how to access the indices.*
+*Learn how to control the flow of your Python programs using conditional statements like `if`, `elif`, and `else`.*
 
 <!--more-->
-In the previous unit, you got an idea of how to address some elements of an object. Let's take a closer look now.
-At the end of this unit you should know how to
+At the end of this unit, you should know:
 
-* find
-* address and
-* change
+- How to use `if` statements to execute code based on conditions,
+- How to use `elif` for checking multiple conditions,
+- How to use `else` to define what happens when none of the conditions are met,
 
-specific data in arrays, lists, matrices and data.frames.
+Understanding these concepts will allow you to make decisions in your programs, enabling more dynamic and responsive code.
 
 ## Comments?
 You can leave comments below if you have questions or remarks about any of the text or code in this unit.
@@ -23,11 +22,17 @@ Please copy the corresponding line into your comment to make it easier to answer
 
 <script src="https://utteranc.es/client.js"
         repo="GeoMOER/moer-base-r"
-        issue-term="moer-base-r_unit04"
+        issue-term="moer-base-r_unit07"
         theme="github-light"
         crossorigin="anonymous"
         async>
 </script>
 
 
-<!--more-->
+<!--
+## Further reading
+
+add some day
+
+Bild von <a href="https://pixabay.com/de/users/kuszapro-369349/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=583537">Christopher Kuszajewski</a> auf <a href="https://pixabay.com/de/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=583537">Pixabay</a>
+-->

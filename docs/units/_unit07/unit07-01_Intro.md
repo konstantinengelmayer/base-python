@@ -11,9 +11,7 @@ header:
 
 At the end of this unit you should know
 
-* what arithmetic, relational and logical operators are
-* what for-loops, lapply-loops and while-loops are and how to choose the right one
-* and how to build if-then-else constructs.
+* what for-loops and while-loops are and how to choose the right one
 
 ## Comments?
 You can leave comments below if you have questions or remarks about any of the text or code in this unit.
